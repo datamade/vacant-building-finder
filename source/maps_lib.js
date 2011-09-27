@@ -34,6 +34,8 @@
     map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 	
 	$("#ddlRadius").val("805");
+	
+	$("#cbCensus").attr("checked", "checked");
     
     $("#cbVacant1").attr("checked", "checked");
 	$("#cbVacant2").attr("checked", "checked");
@@ -68,7 +70,7 @@
 		var vacant3 = $("#cbVacant3").is(':checked');
 		
 		var inUse1 = $("#cbInUse1").is(':checked');
-		var inUse2 = $("#cbInUse1").is(':checked');
+		var inUse2 = $("#cbInUse2").is(':checked');
 		
 		var open1 = $("#cbOpen1").is(':checked');
 		var open2 = $("#cbOpen2").is(':checked');
@@ -179,6 +181,22 @@
 			searchRadiusCircle.setMap(null);
 		
 		buildings.setMap(null);
+	}
+	
+	function refreshBuildings() {
+		if (searchBuildings != null)
+			searchBuildings.setMap(map);
+		else
+			buildings.setMap(map);
+	}
+	
+	function toggleCensus() {
+		if ($("#cbCensus").is(':checked'))
+			census.setMap(map);
+		else
+			census.setMap(null);
+			
+		refreshBuildings();
 	}
 
  function findMe() {

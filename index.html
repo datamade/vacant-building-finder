@@ -32,22 +32,23 @@
 			<hr />
 			<div class="content-secondary">
 				<div id='search'>
-					<p>Find vacant and abandoned buildings using <strong>any</strong> or <strong>all</strong> of the fields below:</p>
+					<p><label for='cbCensus'><input type='checkbox' name="cbCensus" id='cbCensus' onclick="toggleCensus();"/> Show census data <span id="label-purple">(purple)</span></label></p>
+					
 					<h4>Vacant or occupied</h4>
 					<ul class='options-v'>
 						<li><label for='cbVacant1'><input type='checkbox' id='cbVacant1' />Vacant <span id="label-blue">(blue)</span></label></li>
-						<li><label for='cbVacant2'><input type='checkbox' id='cbVacant2' />Occupied <span id="label-purple">(purple)</span></label></li>
+						<li><label for='cbVacant2'><input type='checkbox' id='cbVacant2' />Occupied <span id="label-green">(green)</span></label></li>
 						<li><label for='cbVacant3'><input type='checkbox' id='cbVacant3' />Unknown <span id="label-yellow">(yellow)</span></label></li>
 					</ul>
-					<h4>In use by homeless, children, gangs, etc</h4>
+					<h4>In use by homeless, children, gangs, etc.</h4>
 					<ul class='options-h'>
-						<li><label for='cbInUse1'><input type='checkbox' id='cbInUse1' />Yes</label></li>
-						<li><label for='cbInUse2'><input type='checkbox' id='cbInUse2' />No</label></li>
+						<li><label for='cbInUse1'><input type='checkbox' id='cbInUse1' />In use</label></li>
+						<li><label for='cbInUse2'><input type='checkbox' id='cbInUse2' />Not in use</label></li>
 					</ul>
 					<h4>Open or boarded</h4>
 					<ul class='options-h'>
-						<li><label for='cbOpen1'><input type='checkbox' id='cbOpen1' />Yes</label></li>
-						<li><label for='cbOpen2'><input type='checkbox' id='cbOpen2' />No</label></li>
+						<li><label for='cbOpen1'><input type='checkbox' id='cbOpen1' />Open</label></li>
+						<li><label for='cbOpen2'><input type='checkbox' id='cbOpen2' />Boarded</label></li>
 						<li><label for='cbOpen3'><input type='checkbox' id='cbOpen3' />Unknown</label></li>
 					</ul>
 					<h4>Vacant due to fire</h4>
@@ -56,6 +57,7 @@
 						<li><label for='cbFire2'><input type='checkbox' id='cbFire2' />No</label></li>
 					</ul>
 					<div class='clear'></div>
+					<hr />
 					<div class='input-addr'>
 						<h4>Address <span class='mute'>(<a href='#' onclick="findMe(); return false;">find me</a>)</span></h4>
 						<p><input class='txt hint' type="text" title="Enter an address or an intersection &hellip;" id="txtSearchAddress" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/></p>
@@ -76,7 +78,7 @@
 					<span class='mute'><a href='#' onclick="initialize();">reset map</a></span>
 					<span id='resultCount'>&nbsp;</span>
 					<hr />
-					<p class='mute'><br />The data used to build this map was provided by the <a href='http://data.cityofchicago.org/Government/Vacant-and-Abandoned-Buildings-Service-Requests/7nii-7srd'>Chicago Data Portal</a>. View the raw data in Fusion Tables <a href='http://www.google.com/fusiontables/DataSource?dsrcid=580362'>here</a>. Map and search integration by <a href='http://derekeder.com'>Derek Eder</a>.
+					<p class='mute'><br />The data used to build this map was provided by the <a href='http://data.cityofchicago.org/Government/Vacant-and-Abandoned-Buildings-Service-Requests/7nii-7srd'>Chicago Data Portal</a>. View the raw data in Fusion Tables <a href='http://www.google.com/fusiontables/DataSource?dsrcid=1614852'>here</a>. Map and search integration by <a href='http://derekeder.com'>Derek Eder</a>.
 				</div>
 			</div>
 			<div class="content-primary">
