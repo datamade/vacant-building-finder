@@ -28,22 +28,32 @@
 <body>
 		<div id="page"> 
 			<h1>Chicago Vacant and Abandoned Buildings</h1>
-			<span class='tagline'><span id='totalBuildings'>#</span> service request (311) calls for open and vacant buildings reported to the City of Chicago from January 1, 2010 to March 15, 2011</span>
+			<span class='tagline'><span id='totalBuildings'>#</span> service request (311) calls for open and vacant buildings reported to the City of Chicago from January 1, 2010 to Sept 27, 2011</span>
 			<hr />
 			<div class="content-secondary">
 				<div id='search'>
 					<p>Find vacant and abandoned buildings using <strong>any</strong> or <strong>all</strong> of the fields below:</p>
-					<h4>In use by homeless, children, gangs, etc</h4>
+					<h4>Vacant or occupied</h4>
 					<ul class='options-v'>
-						<li><label for='cbOccupied'><input type='checkbox' id='cbOccupied' />In use <span id='label-blue'>(blue)</span> - 2,026 total</label></li>
-						<li><label for='cbVacant'><input type='checkbox' id='cbVacant' />Vacant <span id='label-red'>(red)</span> - 2,014 total</label></li>
-						<li><label for='cbUnknown'><input type='checkbox' id='cbUnknown' />Unknown <span id='label-yellow'>(yellow)</span> - 550 total</label></li>
+						<li><label for='cbVacant1'><input type='checkbox' id='cbVacant1' />Vacant <span id="label-blue">(blue)</span></label></li>
+						<li><label for='cbVacant2'><input type='checkbox' id='cbVacant2' />Occupied <span id="label-purple">(purple)</span></label></li>
+						<li><label for='cbVacant3'><input type='checkbox' id='cbVacant3' />Unknown <span id="label-yellow">(yellow)</span></label></li>
+					</ul>
+					<h4>In use by homeless, children, gangs, etc</h4>
+					<ul class='options-h'>
+						<li><label for='cbInUse1'><input type='checkbox' id='cbInUse1' />Yes</label></li>
+						<li><label for='cbInUse2'><input type='checkbox' id='cbInUse2' />No</label></li>
+					</ul>
+					<h4>Open or boarded</h4>
+					<ul class='options-h'>
+						<li><label for='cbOpen1'><input type='checkbox' id='cbOpen1' />Yes</label></li>
+						<li><label for='cbOpen2'><input type='checkbox' id='cbOpen2' />No</label></li>
+						<li><label for='cbOpen3'><input type='checkbox' id='cbOpen3' />Unknown</label></li>
 					</ul>
 					<h4>Vacant due to fire</h4>
 					<ul class='options-h'>
 						<li><label for='cbFire1'><input type='checkbox' id='cbFire1' />Yes</label></li>
 						<li><label for='cbFire2'><input type='checkbox' id='cbFire2' />No</label></li>
-						<li><label for='cbFire3'><input type='checkbox' id='cbFire3' />Unknown</label></li>
 					</ul>
 					<div class='clear'></div>
 					<div class='input-addr'>

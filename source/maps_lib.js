@@ -8,12 +8,14 @@
   var addrMarker;
   var addrMarkerImage = 'http://derekeder.com/images/icons/blue-pushpin.png';
   
-  var fusionTableId = 580362;
+  var fusionTableId = 1614852;
+  var censusTableId = 1647341;
   var searchRadius = 1610; //in meters ~ 1 mile
   var recordName = "building";
   var recordNamePlural = "buildings";
   var searchBuildings;
   var buildings = new google.maps.FusionTablesLayer(fusionTableId);
+  var census = new google.maps.FusionTablesLayer(censusTableId);
   var searchStr;
   var searchRadiusCircle;
   
@@ -33,16 +35,23 @@
 	
 	$("#ddlRadius").val("805");
     
-    $("#cbOccupied").attr("checked", "checked");
-	$("#cbVacant").attr("checked", "checked");
-	$("#cbUnknown").attr("checked", "checked");
+    $("#cbVacant1").attr("checked", "checked");
+	$("#cbVacant2").attr("checked", "checked");
+	$("#cbVacant3").attr("checked", "checked");
+	
+	$("#cbInUse1").attr("checked", "checked");
+	$("#cbInUse2").attr("checked", "checked");
+	
+	$("#cbOpen1").attr("checked", "checked");
+	$("#cbOpen2").attr("checked", "checked");
+	$("#cbOpen3").attr("checked", "checked");
 	
 	$("#cbFire1").attr("checked", "checked");
 	$("#cbFire2").attr("checked", "checked");
-	$("#cbFire3").attr("checked", "checked");
 	
 	searchBuildings = null;
 	
+	census.setMap(map);
 	buildings.setMap(map);
 	$("#txtSearchAddress").val("");
   }
@@ -54,33 +63,59 @@
 		
 		searchRadius = $("#ddlRadius").val();
 		
-		var occupied = $("#cbOccupied").is(':checked');
-		var vacant = $("#cbVacant").is(':checked');
-		var unknown = $("#cbUnknown").is(':checked');
+		var vacant1 = $("#cbVacant1").is(':checked');
+		var vacant2 = $("#cbVacant2").is(':checked');
+		var vacant3 = $("#cbVacant3").is(':checked');
+		
+		var inUse1 = $("#cbInUse1").is(':checked');
+		var inUse2 = $("#cbInUse1").is(':checked');
+		
+		var open1 = $("#cbOpen1").is(':checked');
+		var open2 = $("#cbOpen2").is(':checked');
+		var open3 = $("#cbOpen3").is(':checked');
 		
 		var fire1 = $("#cbFire1").is(':checked');
 		var fire2 = $("#cbFire2").is(':checked');
-		var fire3 = $("#cbFire3").is(':checked');
 		
-		searchStr = "SELECT Address FROM " + fusionTableId + " WHERE Address not equal to ''";
+		searchStr = "SELECT LONGITUDE FROM " + fusionTableId + " WHERE LONGITUDE not equal to ''";
 		
-		var searchType = "'ANY PEOPLE USING PROPERTY? (HOMELESS, CHILDEN, GANGS)' IN (-1,";
-        if (occupied)
-			searchType += "1,";
-		if (vacant)
-			searchType += "0,";
-		if (unknown)
-			searchType += "2,";
+		//vacant
+		var searchVacant = "'Vacant flag' IN (-1,";
+        if (vacant1)
+			searchVacant += "1,";
+		if (vacant2)
+			searchVacant += "0,";
+		if (vacant3)
+			searchVacant += "2,";
 
-        searchStr += " AND " + searchType.slice(0, searchType.length - 1) + ")";
-					
-		var searchFire = "'IS THE BUILDING VACANT DUE TO FIRE?' IN (-1,";
+        searchStr += " AND " + searchVacant.slice(0, searchVacant.length - 1) + ")";
+		
+		//in use
+		var searchUse = "'In use flag' IN (-1,";
+        if (inUse1)
+			searchUse += "1,";
+		if (inUse2)
+			searchUse += "0,";
+
+        searchStr += " AND " + searchUse.slice(0, searchUse.length - 1) + ")";
+		
+		//is open
+		var searchOpen = "'Open flag' IN (-1,";
+        if (open1)
+			searchOpen += "1,";
+		if (open2)
+			searchOpen += "0,";
+		if (open3)
+			searchOpen += "2,";
+
+        searchStr += " AND " + searchOpen.slice(0, searchOpen.length - 1) + ")";
+		
+		//fire
+		var searchFire = "'Fire flag' IN (-1,";
         if (fire1)
 			searchFire += "1,";
 		if (fire2)
 			searchFire += "0,";
-		if (fire3)
-			searchFire += "2,";
 
         searchStr += " AND " + searchFire.slice(0, searchFire.length - 1) + ")";
 		
@@ -107,7 +142,7 @@
 				});
 				drawSearchRadiusCircle(results[0].geometry.location);
 				
-				searchStr += " AND ST_INTERSECTS(Address, CIRCLE(LATLNG" + results[0].geometry.location.toString() + "," + searchRadius + "))";
+				searchStr += " AND ST_INTERSECTS(LONGITUDE, CIRCLE(LATLNG" + results[0].geometry.location.toString() + "," + searchRadius + "))";
 				
 				//get using all filters
 				searchBuildings = new google.maps.FusionTablesLayer(fusionTableId, {
@@ -196,7 +231,7 @@
 	
 	function displayCount(searchStr) {
 	  //set the query using the parameter
-	  searchStr = searchStr.replace('SELECT Address ','SELECT Count() ');
+	  searchStr = searchStr.replace('SELECT LONGITUDE ','SELECT Count() ');
 	  
 	  //set the callback function
 	  getFTQuery(searchStr).send(displaySearchCount);
