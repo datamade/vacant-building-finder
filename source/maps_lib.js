@@ -8,14 +8,28 @@
   var addrMarker;
   var addrMarkerImage = 'http://chicagobuildings.org/images/icons/blue-pushpin.png';
   
-  var fusionTableId = 1614852;
-  var censusTableId = 1647341;
+  var fusionTableId = 1614852; //main table for building data
+  
+  var povertyTableId = 1659611;
+  var unemploymentTableId = 1659604;
+  var populationTableId = 1659368;
+  var medianIncomeId = 1659621;
+  var percentBlackId = 1659729;
+  var percentHispanicId = 1659569;
+  
+  var poverty = new google.maps.FusionTablesLayer(povertyTableId);
+  var unemployment = new google.maps.FusionTablesLayer(unemploymentTableId);
+  var population = new google.maps.FusionTablesLayer(populationTableId);
+  var medianIncome = new google.maps.FusionTablesLayer(medianIncomeId);
+  var percentBlack = new google.maps.FusionTablesLayer(percentBlackId);
+  var percentHispanic = new google.maps.FusionTablesLayer(percentHispanicId);
+  
   var searchRadius = 1610; //in meters ~ 1 mile
   var recordName = "building";
   var recordNamePlural = "buildings";
   var searchBuildings;
   var buildings = new google.maps.FusionTablesLayer(fusionTableId);
-  var census = new google.maps.FusionTablesLayer(censusTableId);
+  
   var searchStr;
   var searchRadiusCircle;
   
@@ -35,7 +49,7 @@
 	
 	$("#ddlRadius").val("805");
 	
-	$("#cbCensus").attr("checked", "checked");
+	$("#rbCensus1").attr("checked", "checked");
     
     $("#cbVacant1").attr("checked", "checked");
 	$("#cbVacant2").attr("checked", "checked");
@@ -53,7 +67,7 @@
 
 	searchBuildings = null;
 	
-	census.setMap(map);
+	poverty.setMap(map);
 	buildings.setMap(map);
 	$("#txtSearchAddress").val("");
   }
@@ -191,10 +205,25 @@
 	}
 	
 	function toggleCensus() {
-		if ($("#cbCensus").is(':checked'))
-			census.setMap(map);
-		else
-			census.setMap(null);
+		poverty.setMap(null);
+		unemployment.setMap(null);
+		population.setMap(null);
+		medianIncome.setMap(null);
+		percentBlack.setMap(null);
+		percentHispanic.setMap(null);
+	
+		if ($("#rbCensus1").is(':checked'))
+			poverty.setMap(map);
+		if ($("#rbCensus2").is(':checked'))
+			unemployment.setMap(map);
+		if ($("#rbCensus3").is(':checked'))
+			population.setMap(map);
+		if ($("#rbCensus4").is(':checked'))
+			medianIncome.setMap(map);
+		if ($("#rbCensus5").is(':checked'))
+			percentBlack.setMap(map);
+		if ($("#rbCensus6").is(':checked'))
+			percentHispanic.setMap(map);
 			
 		refreshBuildings();
 	}
