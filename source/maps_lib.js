@@ -6,7 +6,7 @@
   var map;
   var geocoder;
   var addrMarker;
-  var addrMarkerImage = 'http://derekeder.com/images/icons/blue-pushpin.png';
+  var addrMarkerImage = 'http://chicagobuildings.org/images/icons/blue-pushpin.png';
   
   var fusionTableId = 1614852;
   var censusTableId = 1647341;
@@ -50,7 +50,7 @@
 	
 	$("#cbFire1").attr("checked", "checked");
 	$("#cbFire2").attr("checked", "checked");
-	
+
 	searchBuildings = null;
 	
 	census.setMap(map);
@@ -264,10 +264,9 @@
 	  if (response.getDataTable().getNumberOfRows() > 0)
 	  	count = parseInt(response.getDataTable().getValue(0, 0));
 	  
-	  $('#totalBuildings').html(count);	
+	  $('#totalBuildings').html(addCommas(count));	
 	}
 
-	//define callback function, this is called when the results are returned
 	function displaySearchCount(response) {
 	  var numRows = 0;
 	  if (response.getDataTable().getNumberOfRows() > 0)
@@ -279,4 +278,17 @@
         $( "#resultCount" ).html("found " + numRows + " " + name);
       });
 	  $( "#resultCount" ).fadeIn();
+	}
+	
+	function addCommas(nStr)
+	{
+		nStr += '';
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? '.' + x[1] : '';
+		var rgx = /(\d+)(\d{3})/;
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		}
+		return x1 + x2;
 	}
