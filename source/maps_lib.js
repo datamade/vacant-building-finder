@@ -36,6 +36,7 @@
   google.load('visualization', '1', {}); //used for custom SQL call to get count
   
   function initialize() {
+  	initializeDateSlider();
 	$( "#resultCount" ).html("");
   
   	geocoder = new google.maps.Geocoder();
@@ -62,8 +63,8 @@
 	searchBuildings = null;
 	
 	poverty.setMap(map);
-	doSearch();
 	$("#txtSearchAddress").val("");
+	doSearch();
   }
   
   function initializeDateSlider() {
