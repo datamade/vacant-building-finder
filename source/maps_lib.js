@@ -60,6 +60,8 @@
 	$("#cbOpen2").attr("checked", "checked");
 	$("#cbOpen3").attr("checked", "checked");
 
+	setDemographicsLabels("0&ndash;20%", "20&ndash;40%", "40&ndash;62%");
+	
 	searchBuildings = null;
 	
 	poverty.setMap(map);
@@ -71,7 +73,7 @@
 	var minDate = new Date(2010, 1-1, 1);
     var maxDate = new Date();
     var initialStartDate = new Date();
-    initialStartDate.setDate(maxDate.getDate() - 180);
+    initialStartDate.setDate(maxDate.getDate() - 90);
     $('#minDate').html($.datepicker.formatDate('M yy', minDate));
     $('#maxDate').html($.datepicker.formatDate('M yy', maxDate));
     
@@ -176,7 +178,7 @@
 				searchStr += " AND ST_INTERSECTS('Full Address', CIRCLE(LATLNG" + results[0].geometry.location.toString() + "," + searchRadius + "))";
 				
 				//get using all filters
-				console.log(searchStr);
+				//console.log(searchStr);
 				searchBuildings = new google.maps.FusionTablesLayer(fusionTableId, {
 					query: searchStr}
 					);
@@ -193,7 +195,7 @@
 		else
 		{
 			//get using all filters
-			console.log(searchStr);
+			//console.log(searchStr);
 			searchBuildings = new google.maps.FusionTablesLayer(fusionTableId, {
 				query: searchStr}
 				);
@@ -229,20 +231,48 @@
 		percentBlack.setMap(null);
 		percentHispanic.setMap(null);
 	
-		if ($("#rbCensus1").is(':checked'))
+		if ($("#rbCensus1").is(':checked')) {
 			poverty.setMap(map);
-		if ($("#rbCensus2").is(':checked'))
+			setDemographicsLabels("0&ndash;20%", "20&ndash;40%", "40&ndash;62%");
+		}
+		if ($("#rbCensus2").is(':checked')) {
 			unemployment.setMap(map);
-		if ($("#rbCensus3").is(':checked'))
+			setDemographicsLabels("0&ndash;7%", "7&ndash;14%", "14&ndash;22%");
+		}
+		if ($("#rbCensus3").is(':checked')) {
 			population.setMap(map);
-		if ($("#rbCensus4").is(':checked'))
+			setDemographicsLabels("0&ndash;35k", "35k&ndash;75k", "75k&ndash;105k");
+		}
+		if ($("#rbCensus4").is(':checked')) {
 			medianIncome.setMap(map);
-		if ($("#rbCensus5").is(':checked'))
+			setDemographicsLabels("$10k&ndash;40k", "$40k&ndash;70k", "$70k&ndash;100k");
+		}
+		if ($("#rbCensus5").is(':checked')) {
 			percentBlack.setMap(map);
-		if ($("#rbCensus6").is(':checked'))
+			setDemographicsLabels("0&ndash;30%", "30&ndash;60%", "60&ndash;100%");
+		}
+		if ($("#rbCensus6").is(':checked')) {
 			percentHispanic.setMap(map);
+			setDemographicsLabels("0&ndash;30%", "30&ndash;60%", "60&ndash;90%");
+		}
+		if ($("#rbCensus7").is(':checked')) {
+			setDemographicsLabels("&ndash;", "&ndash;", "&ndash;");
+		}
 			
 		refreshBuildings();
+	}
+	
+	function setDemographicsLabels(left, middle, right) 
+	{
+		$('#legend-left').fadeOut('fast', function(){
+			$("#legend-left").html(left);
+		}).fadeIn('fast');
+		$('#legend-middle').fadeOut('fast', function(){
+			$("#legend-middle").html(middle);
+		}).fadeIn('fast');
+		$('#legend-right').fadeOut('fast', function(){
+			$("#legend-right").html(right);
+		}).fadeIn('fast');
 	}
 
  function findMe() {

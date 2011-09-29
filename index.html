@@ -8,11 +8,11 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<script src="/source/analytics_lib.js" type="text/javascript"></script>
+<script src="source/analytics_lib.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script src="/source/jquery.ezpz_hint.min.js" type="text/javascript"></script>
-<script src="/source/maps_lib.js" type="text/javascript"></script>
-<link href='/styles/master.css' media='all' rel='stylesheet' type='text/css' />
+<script src="source/jquery.ezpz_hint.min.js" type="text/javascript"></script>
+<script src="source/maps_lib.js" type="text/javascript"></script>
+<link href='styles/master.css' media='all' rel='stylesheet' type='text/css' />
 
 <script type="text/javascript">
   $(function() {
@@ -34,9 +34,9 @@
 				<div id='search'>
 					<h4>Vacant or occupied<span><a href='#'>more info</a></span></h4>
 					<ul class='options-h'>
-						<li><span id="label-blue"><label for='cbVacant1'><input type='checkbox' id='cbVacant1' />Vacant</label></li>
-						<li><span id="label-green"><label for='cbVacant2'><input type='checkbox' id='cbVacant2' />Occupied</label></li>
-						<li><span id="label-yellow"><label for='cbVacant3'><input type='checkbox' id='cbVacant3' />Unknown</label></li>
+						<li><span id="label-blue"><label for='cbVacant1'><input type='checkbox' id='cbVacant1' />Vacant</label></span></li>
+						<li><span id="label-green"><label for='cbVacant2'><input type='checkbox' id='cbVacant2' />Occupied</label></span></li>
+						<li><span id="label-yellow"><label for='cbVacant3'><input type='checkbox' id='cbVacant3' />Unknown</label></span></li>
 					</ul>
 					
 					<h4>Open or boarded<span><a href='#'>more info</a></span></h4>
@@ -81,7 +81,12 @@
 					<span id='resultCount'>&nbsp;</span>
 					<hr />
 					<h4>Neighborhood demographics<span class='mute'><a href='#'>where did this come from?</a></span></h4>
-					<img src='/images/census-legend.png' alt='Census legend' />
+					<ol id='demographics-legend'>
+						<li id='legend-left'></li>
+						<li id='legend-middle'></li>
+						<li id='legend-right'></li>
+					</ol>
+					<div class='clear'></div>
 					<ul class='c3l options-v'>
 						<li><label for='rbCensus1'><input name='rbCensus' type='radio' id='rbCensus1'  onclick="toggleCensus();"/>Poverty rate</label></li>
 						<li><label for='rbCensus2'><input name='rbCensus' type='radio' id='rbCensus2'  onclick="toggleCensus();"/>Unemployment rate</label></li>
