@@ -72,8 +72,12 @@
     var maxDate = new Date();
     var initialStartDate = new Date();
     initialStartDate.setDate(maxDate.getDate() - 180);
+    $('#minDate').html($.datepicker.formatDate('M yy', minDate));
+    $('#maxDate').html($.datepicker.formatDate('M yy', maxDate));
+    
     $('#startDate').html($.datepicker.formatDate('mm/dd/yy', initialStartDate));
     $('#endDate').html($.datepicker.formatDate('mm/dd/yy', maxDate));
+    
     $('#date-range').slider({
     	range: true,
     	step: 30,

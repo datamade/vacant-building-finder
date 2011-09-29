@@ -30,7 +30,7 @@
 			<h1>Chicago Vacant and Abandoned Buildings Finder</h1>
 			<hr />
 			<div class="content-secondary">
-				<p class='tagline'>Find vacant and abandoned buildings using the fields below. <br /><span class='mute'>Reports made for open and vacant buildings in the City of Chicago to 311 since January 1, 2010. <a href='about.html'>Check out the FAQ</a> for more information.</span></p>
+				<p class='tagline'>Find vacant and abandoned buildings in Chicago. <br /><span class='mute'>Data comes from reports made for open and vacant buildings to 311 since January 1, 2010. <a href='about.html'>Check out the FAQ</a> for more information.</span></p>
 				<div id='search'>
 					<h4>Vacant or occupied<span><a href='#'>more info</a></span></h4>
 					<ul class='options-h'>
@@ -46,15 +46,19 @@
 						<li><label for='cbOpen3'><input type='checkbox' id='cbOpen3' />Unknown</label></li>
 					</ul>
 					
-					<h4>Other status<span></h4>
+					<h4>Other status<span><a href='#'>more info</a></span></h4>
 					<ul class='options-h'>
 						<li><label for='cbFire1'><input type='checkbox' id='cbFire1' />Vacant due to fire</label></li>
 						<li><label for='cbInUse1'><input type='checkbox' id='cbInUse1' />Used by non-residents</label></li>
 					</ul>
 					
-					<h4>Date reported</h4>
+					<h4>
+						Date reported
+						<span class='mute' id="startDate"></span> - <span class='mute' id="endDate"></span>
+					</h4>
 					<div id="date-range"></div>
-					<p class='l' id="startDate"></p><p class='r' id="endDate"></p>
+					<p class='l' id='minDate'></p><p class='r' id='maxDate'></p>
+					
 					<div class='clear'></div>
 					<div class='input-addr'>
 						<h4>Search around an address<span>(<a href='#' onclick="findMe(); return false;">find me</a>)</span></h4>
@@ -76,7 +80,7 @@
 					<span class='mute'><a href='#' onclick="initialize();">reset map</a></span>
 					<span id='resultCount'>&nbsp;</span>
 					<hr />
-					<h4>Census data by neighborhood</h4>
+					<h4>Neighborhood demographics<span class='mute'><a href='#'>where did this come from?</a></span></h4>
 					<img src='/images/census-legend.png' alt='Census legend' />
 					<ul class='c3l options-v'>
 						<li><label for='rbCensus1'><input name='rbCensus' type='radio' id='rbCensus1'  onclick="toggleCensus();"/>Poverty rate</label></li>
