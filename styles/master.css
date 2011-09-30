@@ -106,7 +106,11 @@ ul.c2l, ul.c2r { list-style: none; margin-left: 0; }
 .content-home .mute { font-size:14px; }
 .home-left { float: left; width: 28%; padding: 0 5px; }
 .home-right { float: right; width: 68%; padding-top: 15px; }
-	
+
+/* Header nav */
+#header-nav { float: right; background: none; margin-bottom: 0.3em; padding: 0; margin: 15px 0 0 0; list-style: none; }
+#header-nav li { float: left; margin: 0 0 0 2em; white-space: nowrap; text-align: center; font-size: 18px; color: #4b58a6;  }
+
 /* Maps */
 #map_canvas { height: 100%; width:100%; }
 #map_canvas img { float: right; padding-bottom: 8px; }
@@ -117,7 +121,10 @@ ul.c2l, ul.c2r { list-style: none; margin-left: 0; }
 p.mute { margin: 0; }
 
 /* Text boxes */
-  .ezpz-hint { color: #777; font-style: italic; }
+.ezpz-hint { color: #777; font-style: italic; }
+  
+/* Title */
+.header-btn {margin-top: 10px; }
 
 /* footer text */
 .footer { color: #77787b; font-size: 12px; }
@@ -143,7 +150,7 @@ td .options-h, td .options-v { margin: 0; }
 .options-v li p { margin: 0; text-indent: 0; }
 .options-days li { margin-right: 0.1em; }
 
-#date-range { margin: 0.5em 4em 0.5em 0.5em; width: 95%; }
+#date-range { margin: 0.5em 0.5em 0.5em 0.5em; }
 
 #layer-button-projects { color: #FF6666; font-weight: bold; }
 #layer-button-wards { color: #80B16A; font-weight: bold; }
@@ -167,9 +174,6 @@ td .options-h, td .options-v { margin: 0; }
   margin-right: 0.5em;
   text-shadow: 1px 1px 1px #58595B;
 }
-
-.header-btn {margin-top: 10px;}
-h1 img { padding-bottom: -10px; }
 
 .ui-slider-horizontal { height: 0.4em;}
 .ui-slider .ui-slider-handle { height: 0.9em; width: 0.9em; }

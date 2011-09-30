@@ -51,10 +51,6 @@
 	$("#ddlRadius").val("805");
 	
 	$("#rbCensus1").attr("checked", "checked");
-    
-    $("#cbVacant1").attr("checked", "checked");
-	$("#cbVacant2").attr("checked", "checked");
-	$("#cbVacant3").attr("checked", "checked");
 	
 	$("#cbOpen1").attr("checked", "checked");
 	$("#cbOpen2").attr("checked", "checked");
@@ -105,11 +101,7 @@
 		var address = $("#txtSearchAddress").val();
 		
 		searchRadius = $("#ddlRadius").val();
-		
-		var vacant1 = $("#cbVacant1").is(':checked');
-		var vacant2 = $("#cbVacant2").is(':checked');
-		var vacant3 = $("#cbVacant3").is(':checked');
-		
+				
 		var open1 = $("#cbOpen1").is(':checked');
 		var open2 = $("#cbOpen2").is(':checked');
 		var open3 = $("#cbOpen3").is(':checked');
@@ -118,18 +110,7 @@
 		var fire1 = $("#cbFire1").is(':checked');
 		
 		searchStr = "SELECT 'Full Address' FROM " + fusionTableId + " WHERE 'Full Address' not equal to ''";
-		
-		//vacant
-		var searchVacant = "'Vacant flag' IN (-1,";
-        if (vacant1)
-			searchVacant += "1,";
-		if (vacant2)
-			searchVacant += "0,";
-		if (vacant3)
-			searchVacant += "2,";
-
-        searchStr += " AND " + searchVacant.slice(0, searchVacant.length - 1) + ")";
-		
+				
 		//is open
 		var searchOpen = "'Open flag' IN (-1,";
         if (open1)
@@ -247,14 +228,14 @@
 			medianIncome.setMap(map);
 			setDemographicsLabels("$10k&ndash;40k", "$40k&ndash;70k", "$70k&ndash;100k");
 		}
-		if ($("#rbCensus5").is(':checked')) {
-			percentBlack.setMap(map);
-			setDemographicsLabels("0&ndash;30%", "30&ndash;60%", "60&ndash;100%");
-		}
-		if ($("#rbCensus6").is(':checked')) {
-			percentHispanic.setMap(map);
-			setDemographicsLabels("0&ndash;30%", "30&ndash;60%", "60&ndash;90%");
-		}
+		//if ($("#rbCensus5").is(':checked')) {
+		//	percentBlack.setMap(map);
+		//	setDemographicsLabels("0&ndash;30%", "30&ndash;60%", "60&ndash;100%");
+		//}
+		//if ($("#rbCensus6").is(':checked')) {
+		//	percentHispanic.setMap(map);
+		//	setDemographicsLabels("0&ndash;30%", "30&ndash;60%", "60&ndash;90%");
+		//}
 		if ($("#rbCensus7").is(':checked')) {
 			setDemographicsLabels("&ndash;", "&ndash;", "&ndash;");
 		}
