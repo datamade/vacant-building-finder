@@ -18,14 +18,17 @@
 	
 	
 	  $(function() {
-			$('#invStreetNumber').val(getUrlVars()["invStreetNumber"]);
+		//$('#311-content').load('https://servicerequest.cityofchicago.org/web_intake_chic/Controller', function() {
+		    $('#invStreetNumber').val(getUrlVars()["invStreetNumber"]);
 			$('#invStreetPrefix').val(getUrlVars()["invStreetPrefix"]);
 			$('#invStreetName').val(getUrlVars()["invStreetName"]);
 			$('#invStreetSuffix').val(getUrlVars()["invStreetSuffix"]);
 			$("#motForm").submit();
-		});
+		//});
+	  });
 	</script>
 </head>
+<div id="311-content"></div>
 <form action="https://servicerequest.cityofchicago.org/web_intake_chic/Controller?op=locvalidate" method="post" id="motForm" NAME="motForm">
 <INPUT TYPE="hidden" NAME="invInterfaceType" VALUE="WEBINTAK" />
 <INPUT TYPE="hidden" NAME="invSRTypeCode" VALUE="BBK" />
