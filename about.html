@@ -26,6 +26,7 @@
 	          <li><a href="#who-is-it-for">Who is it for?</a></li>
 	          <li><a href="#why-did-you-make-it">Why did you make it?</a></li>
 	          <li><a href="#where-did-you-get-your-data-from">Where did you get your data from?</a></li>
+			  <li><a href="#were-there-problems-with-the-data">Were there problems with the data?</a></li>
 	          <li><a href="#what-did-you-use-to-build-it">What did you use to build it?</a></li>
 	          <li><a href="#credits">Credits</a></li>
 	        </ul>
@@ -43,6 +44,17 @@
 			<h2 id="who-is-it-for">Who is it for?</h2>
 			<p>This tool is free and for anyone who is interested in vacant and abandoned buildings in Chicago. It was built with simplicity in mind; you don't have to be an expert in real estate or Chicago building policy to use it. That being said, it can definitely be used by someone who is, and I hope that it proves to be a useful tool.</p>
 			
+			<p>It could be used in the following ways:</p>
+			<ul>
+				<li>As an educational tool for the general public to make them aware of the number of vacant and abandoned buildings in Chicago and where they are.</li>
+				<li>By firefighters who want to check if a burning building has people (non-residents) reported in it to determine if they should perform a rescue. If there's no one in the building, they won't have to risk their lives.</li>
+				<li>By community development organizations to track neighborhood trends in foreclosed and abandoned housing and compare it to demographic data. </li>
+				<li>By journalists as a research tool.</li>
+				<li>By the City to more efficiently track vacant and abandoned buildings and manage 311 reports.</li>
+				<li>By neighborhood groups and concerned citizens to locate and report vacant and abandoned buildings around them.</li>
+				<li>By homeless individuals looking for a place to squat (not that this site condones illegal activity - it's just a possibility).</li>
+			</ul>
+			
 			<h2 id="why-did-you-make-it">Why did you make it?</h2>
 			<p>I am not too much of an expert on the subject of vacant and abandoned buildings, but the data seemed very interesting to me. I created a simple version of this map in April of 2011 and noticed that it quickly became one of the most visited pages on my site.</p>
 			
@@ -52,6 +64,11 @@
 			<p>The building data comes from Chicago's 311 reporting service which can be found <a href='http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd'>here</a>.</p>
 			
 			<p>The demographics data comes from a report by the <a href='http://www.chicagosfoodbank.org/'>Greater Chicago Food Depository</a> published on September 21st, 2011. This report can be found <a href='http://www.chicagosfoodbank.org/site/PageServer?pagename=hunger_research'>here</a>.</p>
+			
+			<h2 id="were-there-problems-with-the-data">Were there problems with the data?</h2>
+			<p>There were! The 311 data from the City is published in a very raw format. A lot of fields were not normalized (had multiple values that meant the same thing), and an entire column (‘Is this building dangerous or hazardous?’) was completely blank for all rows. I compensated for this with a <a href="https://github.com/derekeder/Socrata-to-FusionTables">PHP script</a> that pulls the data from the City’s Data Portal and cleans up specific columns based on keywords I found that were common in meaning. For data fields that were blank, I flagged them as ‘unknown’.</a>
+
+			<p>The <a href="http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd">311 Service Requests - Vacant and Abandoned Buildings Reported</a> dataset has been published since January 2011, and I hope the City plans on revisiting it and cleaning up the data soon.</p>
 			
 			<h2 id="what-did-you-use-to-build-it">What did you use to build it?</h2>
 			<p>This site is built with HTML, CSS, Javascript and Google's Fusion Tables and Maps API. The data is stored in Fusion Tables and is updated every night by a <a href='https://github.com/derekeder/Socrata-to-FusionTables'>PHP script I wrote</a> to import the data directly from the <a href='http://data.cityofchicago.org/'>City of Chicago Data Portal</a>.</p>
