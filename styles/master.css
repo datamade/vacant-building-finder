@@ -86,7 +86,7 @@ ul.c2l, ul.c2r { list-style: none; margin-left: 0; }
 }
 
 .content-primary { float: right; padding-left: 10px; width: 65%; height: 95%; }
-.content-secondary { float: left; width: 33%; }
+.content-secondary { float: left; width: 33%; border-top: 5px solid #ddd; padding-top: 5px; }
 .content-simple { margin: auto; width: 700px; } 
 .content-simple  p { margin-top: .25em; }
 
@@ -108,8 +108,8 @@ ul.c2l, ul.c2r { list-style: none; margin-left: 0; }
 .home-right { float: right; width: 68%; padding-top: 15px; }
 
 /* Header nav */
-#header-nav { float: right; background: none; margin-bottom: 0.3em; padding: 0; margin: 15px 0 0 0; list-style: none; }
-#header-nav li { float: left; margin: 0 0 0 2em; white-space: nowrap; text-align: center; font-size: 18px; color: #4b58a6;  }
+#header-nav { float: right; background: none; margin-bottom: 0.3em; padding: 0; margin: 0; list-style: none; }
+#header-nav li { float: left; margin: 0 0 0 2em; white-space: nowrap; text-align: center; font-size: 15px; color: #4b58a6;  }
 
 /* Maps */
 #map_canvas { height: 100%; width:100%; }
@@ -125,6 +125,7 @@ p.mute { margin: 0; }
   
 /* Title */
 .header-btn {margin-top: 10px; }
+
 
 /* footer text */
 .footer { color: #77787b; font-size: 12px; }
