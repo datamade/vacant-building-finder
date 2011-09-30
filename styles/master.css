@@ -87,8 +87,9 @@ ul.c2l, ul.c2r { list-style: none; margin-left: 0; }
 
 .content-primary { float: right; padding-left: 10px; width: 65%; height: 95%; }
 .content-secondary { float: left; width: 33%; border-top: 5px solid #ddd; padding-top: 5px; }
-.content-simple { margin: auto; width: 700px; } 
-.content-simple  p { margin-top: .25em; }
+.content-simple { margin: auto; width: 800px; padding-bottom: 20px; } 
+.content-simple  p { margin-top: .25em; font-size: 15px; }
+.content-simple li { font-size: 15px; margin-left: 25px; }
 
 	/* Full layout (no secondary content) */
 	.full .content { background-image: none; }

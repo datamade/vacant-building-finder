@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Chicago Vacant and Abandoned Building Finder</title>
+<title>Vacant and Abandoned Building Finder - Chicago</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
@@ -29,8 +29,9 @@
 <body>
 		<div id="page"> 
 			<div id='title'>
-				<img src='images/logo.jpg' alt='Chicago Vacant and Abandoned Building Finder' />
+				<a href='/'><img src='images/logo.jpg' alt='Vacant and Abandoned Building Finder - Chicago' /></a>
 				<ul id='header-nav'>
+					<li><a href='/'>Home</a></li>
 					<li><a href='about.html'>About</a></li>
 					<li><a href='faq.html'>FAQ</a></li>
 					<li><a href='https://servicerequest.cityofchicago.org/web_intake_chic/Controller?op=locform&invSRType=BBK&invSRDesc=Vacant/Abandoned%20Building&locreq=Y&stnumreqd=Y'>Report a building to 311</a></li>
@@ -39,7 +40,7 @@
 			<div class="content-secondary">
 				<p class='tagline'>Find vacant and abandoned buildings in Chicago. <br /><span class='mute'>Data comes from reports made for open and vacant buildings to 311 since January 1, 2010. <a href='faq.html'>Check out the FAQ</a> for more information.</span></p>
 				<div id='search'>
-					<h4>Open or boarded<span><a href='#'>more info</a></span></h4>
+					<h4>Open or boarded<span>(<a href='faq.html#fees-for-vacant'>more info</a>)</span></h4>
 					<ul class='options-h'>
 						<li><span id="label-blue"><label for='cbOpen1'><input type='checkbox' id='cbOpen1' />Open</label></span></li>
 						<li><span id="label-green"><label for='cbOpen2'><input type='checkbox' id='cbOpen2' />Boarded</label></span></li>
@@ -48,7 +49,7 @@
 					
 					<ul class='options-h'>
 						<li><label for='cbFire1'><input type='checkbox' id='cbFire1' />Vacant due to fire</label></li>
-						<li><label for='cbInUse1'><input type='checkbox' id='cbInUse1' />Used by non-residents</label></li>
+						<li><label for='cbInUse1'><input type='checkbox' id='cbInUse1' />Used by non-residents</label> (<a href='faq.html#laws-against-occupying'>more info</a>)</li>
 					</ul>
 					
 					<h4>
@@ -80,7 +81,7 @@
 					<span class='mute'><a href='#' onclick="initialize();">reset map</a></span>
 					<span id='resultCount'>&nbsp;</span>
 					<hr />
-					<h4>Neighborhood demographics<span class='mute'><a href='#'>where did this come from?</a></span></h4>
+					<h4>Neighborhood demographics<span class='mute'>(<a href='about.html#where-did-you-get-your-data-from'>where did this come from?</a>)</span></h4>
 					<ol id='demographics-legend'>
 						<li id='legend-left'></li>
 						<li id='legend-middle'></li>
