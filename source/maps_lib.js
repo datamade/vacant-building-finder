@@ -8,7 +8,7 @@
   var addrMarker;
   var addrMarkerImage = 'http://chicagobuildings.org/images/blue-pushpin.png';
   
-  var fusionTableId = 1614852; //main table for building data
+  var fusionTableId = 3631508; //main table for building data
   
   var povertyTableId = 1659611;
   var unemploymentTableId = 1659604;
@@ -109,7 +109,7 @@
 		var inUse1 = $("#cbInUse1").is(':checked');
 		var fire1 = $("#cbFire1").is(':checked');
 		
-		searchStr = "SELECT 'Full Address' FROM " + fusionTableId + " WHERE 'Full Address' not equal to ''";
+		searchStr = "SELECT 'Location' FROM " + fusionTableId + " WHERE 'Location' not equal to ''";
 				
 		//is open
 		var searchOpen = "'Open flag' IN (-1,";
@@ -156,7 +156,7 @@
 				});
 				drawSearchRadiusCircle(results[0].geometry.location);
 				
-				searchStr += " AND ST_INTERSECTS('Full Address', CIRCLE(LATLNG" + results[0].geometry.location.toString() + "," + searchRadius + "))";
+				searchStr += " AND ST_INTERSECTS('Location', CIRCLE(LATLNG" + results[0].geometry.location.toString() + "," + searchRadius + "))";
 				
 				//get using all filters
 				//console.log(searchStr);
@@ -308,7 +308,7 @@
 	
 	function displayCount(searchStr) {
 	  //set the query using the parameter
-	  searchStr = searchStr.replace("SELECT 'Full Address' ","SELECT Count() ");
+	  searchStr = searchStr.replace("SELECT 'Location' ","SELECT Count() ");
 	  
 	  //set the callback function
 	  getFTQuery(searchStr).send(displaySearchCount);

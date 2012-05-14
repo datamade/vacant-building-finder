@@ -27,6 +27,7 @@
 	          <li><a href="#who-is-it-for">Who is it for?</a></li>
 	          <li><a href="#why-did-you-make-it">Why did you make it?</a></li>
 	          <li><a href="#where-did-you-get-your-data-from">Where did you get your data from?</a></li>
+	          <li><a href="#how-many-buildings-are-added-per-day">How many buildings are added per day?</a></li>
 			  <li><a href="#were-there-problems-with-the-data">Were there problems with the data?</a></li>
 	          <li><a href="#what-did-you-use-to-build-it">What did you use to build it?</a></li>
 	          <li><a href="#credits">Credits</a></li>
@@ -65,12 +66,15 @@
 			<p>When the <a href='http://appsformetrochicago.com/'>Apps for Metro Chicago</a> contest was announced, I decided that this tool would be a great candidate for it, so I refined it, expanded it, and spun it off in to it's own site: chicagobuildings.org. It is now a finalist for the Community round I eagerly await the results of the competition.</p>
 				
 			<h2 id="where-did-you-get-your-data-from">Where did you get your data from?</h2>
-			<p>The building data comes from Chicago's 311 reporting service which can be found <a href='http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd'>here</a>. The raw Fusion Tables data in KML format can be seen and downloaded <a href='http://www.google.com/fusiontables/DataSource?dsrcid=1614852'>here</a>.</p>
+			<p>The building data comes from Chicago's 311 reporting service which can be found <a href='http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd'>here</a>. The raw Fusion Tables data in KML format can be seen and downloaded <a href='http://www.google.com/fusiontables/DataSource?dsrcid=3631508'>here</a>.</p>
 			
 			<p>The demographics data comes from a report by the <a href='http://www.chicagosfoodbank.org/'>Greater Chicago Food Depository</a> published on September 21st, 2011. This report can be found <a href='http://www.chicagosfoodbank.org/site/PageServer?pagename=hunger_research'>here</a>. The data in KML format can be downloaded <a href='http://www.google.com/fusiontables/DataSource?dsrcid=1647341'>here</a>.</p>
 			
-			<p>Here is a chart showing <strong>number of reported buildings per day</strong>.</p>
-			<p><iframe width="815" height="400" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?gco_displayAnnotations=true&gco_wmode=opaque&containerId=gviz_canvas&rmax=250&q=select+col1%2C+count()+from+1614852+where+col1+%3E%3D+'1%2F1%2F2010'&qrs=+and+col1+%3E%3D+&qre=+and+col1+%3C%3D+&qe=+group+by++col1+order+by+col1+asc&viz=GVIZ&t=TIMELINE&width=815&height=400"></iframe></p>
+			<h2 id="how-many-buildings-are-added-per-day">How many buildings are added per day?</h2>
+			<p>Since Jan 1st 2010, an average of <strong>19 new buildings</strong> are reported in Chicago every day.</p>
+			
+			<p>Here is a chart showing number of new reported buildings per day.</p>
+			<p><iframe width="815" height="400" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?gco_displayAnnotations=true&gco_wmode=opaque&containerId=gviz_canvas&rmax=250&q=select+col1%2C+count()+from+3631508+where+col1+%3E%3D+'1%2F1%2F2010'&qrs=+and+col1+%3E%3D+&qre=+and+col1+%3C%3D+&qe=+group+by++col1+order+by+col1+asc&viz=GVIZ&t=TIMELINE&width=815&height=400"></iframe></p>
 			
 			<h2 id="were-there-problems-with-the-data">Were there problems with the data?</h2>
 			<p>There were! The 311 data from the City is published in a very raw format. A lot of fields were not normalized (had multiple values that meant the same thing), and an entire column (‘Is this building dangerous or hazardous?’) was completely blank for all rows. I compensated for this with a <a href="https://github.com/derekeder/Socrata-to-FusionTables">PHP script</a> that pulls the data from the City’s Data Portal and cleans up specific columns based on keywords I found that were common in meaning. For data fields that were blank, I flagged them as ‘unknown’.</a>
@@ -78,7 +82,7 @@
 			<p>The <a href="http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd">311 Service Requests - Vacant and Abandoned Buildings Reported</a> dataset has been published since January 2011, and I hope the City plans on revisiting it and cleaning up the data soon.</p>
 			
 			<h2 id="what-did-you-use-to-build-it">What did you use to build it?</h2>
-			<p>This site is built with HTML, CSS, Javascript and Google's Fusion Tables and Maps API. The data is stored in Fusion Tables and is updated every night by a <a href='https://github.com/derekeder/Socrata-to-FusionTables'>PHP script I wrote</a> to import the data directly from the <a href='http://data.cityofchicago.org/'>City of Chicago Data Portal</a>.</p>
+			<p>This site is built with HTML, CSS, Javascript and Google's Fusion Tables and Maps API. The data is stored in Fusion Tables and is updated every week by a <a href='https://github.com/derekeder/Socrata-to-FusionTables'>PHP script I wrote</a> to import the data directly from the <a href='http://data.cityofchicago.org/'>City of Chicago Data Portal</a>.</p>
 			
 			<p>Technologies used:</p>
 			<ul>
