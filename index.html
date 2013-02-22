@@ -10,7 +10,8 @@
 <script src="source/analytics_lib.js" type="text/javascript"></script>
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script src="source/jquery.ezpz_hint.min.js" type="text/javascript"></script>
-<script src="source/maps_lib.js?4" type="text/javascript"></script>
+<script type="text/javascript" src="source/jquery.address.min.js"></script>
+<script src="source/maps_lib.js?1" type="text/javascript"></script>
 
 <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -19,12 +20,49 @@
 
 <script type="text/javascript">
   $(function() {
-        initialize();
-        $(".hint").ezpz_hint();
+    MapsLib.initialize();
+    $(".hint").ezpz_hint();
+		
 		$(':checkbox').click(function(){
-			doSearch();
+		  MapsLib.doSearch();
 		});
-    });
+
+		$(':radio').click(function(){
+		  MapsLib.toggleCensus();
+		});
+		
+		$('#search_radius').change(function(){
+		  MapsLib.doSearch();
+		});
+		
+		$('#search_btn').click(function(){
+		  MapsLib.doSearch();
+		});
+		
+		$('#find_me').click(function(){
+		  MapsLib.findMe(); 
+		  return false;
+		});
+		
+		$('#reset').click(function(){
+		  $.address.parameter('address','');
+		  MapsLib.initialize(); 
+		  return false;
+		});
+		
+		$(":text").keydown(function(e){
+		    var key =  e.keyCode ? e.keyCode : e.which;
+		    if(key == 13) {
+		        $('#search').click();
+		        return false;
+		    }
+		});
+
+		setTimeout(function() {
+		  //console.log("refetching map tiles");
+		  MapsLib.uncacheTiles();
+		},3000);
+ 	});
 </script>
 </head>
 <body>
@@ -63,7 +101,7 @@
 					<div class='clear'></div>
 
 					<div class='input-addr'>
-						<h4>Search around an address<span>(<a href='#' onclick="findMe(); return false;">find me</a>)</span></h4>
+						<h4>Search around an address<span>(<a href='#' id="find_me">find me</a>)</span></h4>
 						<p><input class='txt hint' type="text" title="Enter an address or an intersection &hellip;" id="txtSearchAddress" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/></p>
 					</div>
 					<div class='input-radius'>
@@ -78,8 +116,8 @@
 						</p>
 					</div>
 					<div class='clear'></div>
-					<input class="btn" type="button" id="btnSearch" value="Search" onclick="doSearch();" />
-					<span class='mute'><a href='#' onclick="initialize();">reset map</a></span>
+					<input class="btn" type="button" id="search_btn" value="Search"/>
+					<span class='mute'><a href='#' id="reset">reset map</a></span>
 					<span id='resultCount'>&nbsp;</span>
 					<hr />
 					<h4>Neighborhood demographics<span class='mute'>(<a href='about.html#where-did-you-get-your-data-from'>where did this come from?</a>)</span></h4>
@@ -90,17 +128,15 @@
 					</ol>
 					<div class='clear'></div>
 					<ul class='c3l options-v'>
-						<li><label for='rbCensus1'><input name='rbCensus' type='radio' id='rbCensus1'  onclick="toggleCensus();"/>Poverty rate</label></li>
-						<li><label for='rbCensus2'><input name='rbCensus' type='radio' id='rbCensus2'  onclick="toggleCensus();"/>Unemployment rate</label></li>
+						<li><label for='rbCensus1'><input name='rbCensus' type='radio' id='rbCensus1'/>Poverty rate</label></li>
+						<li><label for='rbCensus2'><input name='rbCensus' type='radio' id='rbCensus2'/>Unemployment rate</label></li>
 					</ul>
 					<ul class='c3m options-v'>
-						<li><label for='rbCensus3'><input name='rbCensus' type='radio' id='rbCensus3'  onclick="toggleCensus();"/>Population</label></li>
-						<li><label for='rbCensus4'><input name='rbCensus' type='radio' id='rbCensus4'  onclick="toggleCensus();"/>Median income</label></li>
-						<!--<li><label for='rbCensus5'><input name='rbCensus' type='radio' id='rbCensus5'  onclick="toggleCensus();"/>% Black</label></li>
-						<li><label for='rbCensus6'><input name='rbCensus' type='radio' id='rbCensus6'  onclick="toggleCensus();"/>% Hispanic</label></li>-->
+						<li><label for='rbCensus3'><input name='rbCensus' type='radio' id='rbCensus3'/>Population</label></li>
+						<li><label for='rbCensus4'><input name='rbCensus' type='radio' id='rbCensus4'/>Median income</label></li>
 					</ul>
 					<ul class='c3r options-v'>
-						<li><label for='rbCensus7'><input name='rbCensus' type='radio' id='rbCensus7'  onclick="toggleCensus();"/>Off</label></li>
+						<li><label for='rbCensus7'><input name='rbCensus' type='radio' id='rbCensus7'/>Off</label></li>
 					</ul>
 					<div class='clear'></div>
 					<hr />

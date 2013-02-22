@@ -181,7 +181,7 @@ td .options-h, td .options-v { margin: 0; }
 .ui-slider .ui-slider-handle { height: 0.9em; width: 0.9em; }
 .yellow { color: #cccc33; }
 
-#demographics-legend { background: none; clear: both; margin-bottom: 0.3em; padding: 0; margin: 15px 0 0 0; list-style: none; }
+#demographics-legend { background: none; clear: both; margin-bottom: 0.3em; padding: 8px 0 0 0; margin: 15px 0 0 0; list-style: none; }
 #demographics-legend li { width: 32%; float: left; margin: 0 1% 10px 0; white-space: nowrap; text-align: center; font-size: 11px; color: #77787b; }
 #legend-left { border-top: 10px solid #F7EDF1; }
 #legend-middle { border-top: 10px solid #E7CAD9; }
