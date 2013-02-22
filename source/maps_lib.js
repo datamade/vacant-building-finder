@@ -339,3 +339,10 @@
 		}
 		return x1 + x2;
 	}
+	
+setTimeout(function() {
+  //console.log("refetching map tiles");
+  $("img[src*='googleapis']").each(function(){
+    $(this).attr("src",$(this).attr("src")+"&"+(new Date()).getTime());
+  });
+},3000);
