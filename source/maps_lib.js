@@ -26,7 +26,7 @@ var MapsLib = {
   medianIncomeId: "14kEdO1R9-j0VELDdIDoX3rhhFyiv9WdgDYj79zg",
 
   violationsId: "1L6MVuQ9YN8HIsDAQxCIWwSI9iRwTl_C6jzIyqY8",
-  cpsId: "1LX3Ca2LFOC1x1I6i9olSOQ296I4X6H9iIjJ99LY",
+  schoolsId: "1LX3Ca2LFOC1x1I6i9olSOQ296I4X6H9iIjJ99LY",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -99,25 +99,25 @@ var MapsLib = {
     };
     map = new google.maps.Map($("#map_canvas")[0],myOptions);
 
-    // MapsLib.watchmenViolations = new google.maps.FusionTablesLayer({
-    //   query: {
-    //     from:   MapsLib.violationsId,
-    //     select: "Clean Address",
-    //     where: "'Violation Type' = '13-12-140  Watchman required'"
-    //   },
-    //   styleId: 2,
-    //   templateId: 2
-
-    // });
-    // MapsLib.watchmenViolations.setMap(map);
-
-    MapsLib.cps = new google.maps.FusionTablesLayer({
+    MapsLib.watchmenViolations = new google.maps.FusionTablesLayer({
       query: {
-        from:   MapsLib.cspId,
-        select: "Lat"
+        from:   MapsLib.violationsId,
+        select: "Clean Address",
+        where: "'Violation Type' = '13-12-140  Watchman required'"
       },
       styleId: 2,
       templateId: 2
+
+    });
+    MapsLib.watchmenViolations.setMap(map);
+
+    MapsLib.cps = new google.maps.FusionTablesLayer({
+      query: {
+        from:   MapsLib.schoolsId,
+        select: "Location"
+      },
+      styleId: 4,
+      templateId: 6
     });
     MapsLib.cps.setMap(map);
   },
