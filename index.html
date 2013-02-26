@@ -53,7 +53,7 @@
 		$(":text").keydown(function(e){
 		    var key =  e.keyCode ? e.keyCode : e.which;
 		    if(key == 13) {
-		        $('#search').click();
+		        $('#search_btn').click();
 		        return false;
 		    }
 		});
@@ -102,7 +102,7 @@
 
 					<div class='input-addr'>
 						<h4>Search around an address<span>(<a href='#' id="find_me">find me</a>)</span></h4>
-						<p><input class='txt hint' type="text" title="Enter an address or an intersection &hellip;" id="txtSearchAddress" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/></p>
+						<p><input class='txt hint' type="text" title="Enter an address or an intersection &hellip;" id="txtSearchAddress" /></p>
 					</div>
 					<div class='input-radius'>
 						<h4>&nbsp;<span class='mute'>within &hellip;</span></h4>
