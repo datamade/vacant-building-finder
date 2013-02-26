@@ -102,8 +102,7 @@ var MapsLib = {
     MapsLib.watchmenViolations = new google.maps.FusionTablesLayer({
       query: {
         from:   MapsLib.violationsId,
-        select: "Clean Address",
-        where: "'Violation Type' = '13-12-140  Watchman required'"
+        select: "Clean Address"
       },
       styleId: 2,
       templateId: 2
@@ -111,15 +110,10 @@ var MapsLib = {
     });
     MapsLib.watchmenViolations.setMap(map);
 
-    MapsLib.cps = new google.maps.FusionTablesLayer({
-      query: {
-        from:   MapsLib.schoolsId,
-        select: "Location"
-      },
-      styleId: 4,
-      templateId: 6
-    });
-    MapsLib.cps.setMap(map);
+    $("#ddlRadius").val("805");
+    
+    $("#cbViolation1").attr("checked", "checked");
+    $("#cbViolation2").attr("checked", "checked");
   },
 
   initializeDateSlider: function() {

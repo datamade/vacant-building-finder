@@ -23,45 +23,45 @@
     MapsLib.initialize();
     $(".hint").ezpz_hint();
 		
-		$(':checkbox').click(function(){
-		  MapsLib.doSearch();
-		});
+	$(':checkbox').click(function(){
+	  MapsLib.doSearch();
+	});
 
-		$(':radio').click(function(){
-		  MapsLib.toggleCensus();
-		});
-		
-		$('#search_radius').change(function(){
-		  MapsLib.doSearch();
-		});
-		
-		$('#search_btn').click(function(){
-		  MapsLib.doSearch();
-		});
-		
-		$('#find_me').click(function(){
-		  MapsLib.findMe(); 
-		  return false;
-		});
-		
-		$('#reset').click(function(){
-		  $.address.parameter('address','');
-		  MapsLib.initialize(); 
-		  return false;
-		});
-		
-		$(":text").keydown(function(e){
-		    var key =  e.keyCode ? e.keyCode : e.which;
-		    if(key == 13) {
-		        $('#search_btn').click();
-		        return false;
-		    }
-		});
+	$(':radio').click(function(){
+	  MapsLib.toggleCensus();
+	});
+	
+	$('#search_radius').change(function(){
+	  MapsLib.doSearch();
+	});
+	
+	$('#search_btn').click(function(){
+	  MapsLib.doSearch();
+	});
+	
+	$('#find_me').click(function(){
+	  MapsLib.findMe(); 
+	  return false;
+	});
+	
+	$('#reset').click(function(){
+	  $.address.parameter('address','');
+	  MapsLib.initialize(); 
+	  return false;
+	});
+	
+	$(":text").keydown(function(e){
+	    var key =  e.keyCode ? e.keyCode : e.which;
+	    if(key == 13) {
+	        $('#search_btn').click();
+	        return false;
+	    }
+	});
 
-		setTimeout(function() {
-		  //console.log("refetching map tiles");
-		  MapsLib.uncacheTiles();
-		},3000);
+	setTimeout(function() {
+	  //console.log("refetching map tiles");
+	  MapsLib.uncacheTiles();
+	},3000);
  	});
 </script>
 </head>
