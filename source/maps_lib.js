@@ -25,8 +25,7 @@ var MapsLib = {
   populationTableId: "1IiCZoS5RciFwRJF71UWOMRYFfhcbKs-PbZTqF80",
   medianIncomeId: "14kEdO1R9-j0VELDdIDoX3rhhFyiv9WdgDYj79zg",
 
-  violationsId: "1L6MVuQ9YN8HIsDAQxCIWwSI9iRwTl_C6jzIyqY8",
-  schoolsId: "1LX3Ca2LFOC1x1I6i9olSOQ296I4X6H9iIjJ99LY",
+  violationsId: "1f4RAV8-jliazqW49fkBgFX18AgOzudF4GePRVrM",
 
   //*New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -46,6 +45,7 @@ var MapsLib = {
   defaultZoom:        11,             //zoom level when map is loaded (bigger is more zoomed in)
   addrMarkerImage:    'http://chicagobuildings.org/images/blue-pushpin.png',
   currentPinpoint:    null,
+  violationsMode:     false,
 
   initialize: function() {
     MapsLib.initializeDateSlider();
@@ -92,6 +92,15 @@ var MapsLib = {
   },
 
   initializeWatchmen: function() {
+
+    geocoder = new google.maps.Geocoder();
+
+    MapsLib.violationsMode = true;
+    MapsLib.fusionTableId = MapsLib.violationsId;
+    MapsLib.locationColumn = "latitude";
+    MapsLib.recordName = "violation";       //for showing number of results
+    MapsLib.recordNamePlural = "violations";
+
     var myOptions = {
       zoom: MapsLib.defaultZoom,
       center: MapsLib.map_centroid,
@@ -99,21 +108,14 @@ var MapsLib = {
     };
     map = new google.maps.Map($("#map_canvas")[0],myOptions);
 
-    MapsLib.watchmenViolations = new google.maps.FusionTablesLayer({
-      query: {
-        from:   MapsLib.violationsId,
-        select: "Clean Address"
-      },
-      styleId: 2,
-      templateId: 2
-
-    });
-    MapsLib.watchmenViolations.setMap(map);
+    $( "#resultCount" ).html("");
 
     $("#ddlRadius").val("805");
     
     $("#cbViolation1").attr("checked", "checked");
     $("#cbViolation2").attr("checked", "checked");
+
+    MapsLib.doSearch();
   },
 
   initializeDateSlider: function() {
@@ -149,37 +151,46 @@ var MapsLib = {
   doSearch: function() {
     MapsLib.clearSearch();
     var address = $("#txtSearchAddress").val();
-
-    var open1 = $("#cbOpen1").is(':checked');
-    var open2 = $("#cbOpen2").is(':checked');
-    var open3 = $("#cbOpen3").is(':checked');
-    
-    var inUse1 = $("#cbInUse1").is(':checked');
-    var fire1 = $("#cbFire1").is(':checked');
-
     var whereClause = MapsLib.locationColumn + " not equal to ''";
-    
-    //is open
-    var searchOpen = "'Open flag' IN (-1,";
-    if (open1)
-      searchOpen += "1,";
-    if (open2)
-      searchOpen += "0,";
-    if (open3)
-      searchOpen += "2,";
 
-        whereClause += " AND " + searchOpen.slice(0, searchOpen.length - 1) + ")";
-    
-    //in use
-    if (inUse1)
-      whereClause += " AND 'In use flag' = 1";
-    
-    //fire
-    if (fire1)
-      whereClause += " AND 'Fire flag' = 1";
-        
-    whereClause += " AND 'DATE RECEIVED' >= '" + $('#startDate').html() + "'";
-    whereClause += " AND 'DATE RECEIVED' <= '" + $('#endDate').html() + "'";
+    if (MapsLib.violationsMode) {
+      var searchViolations = "'Violation Flag' IN (-1,";
+      if ($("#cbViolation1").is(':checked')) searchViolations += "1,";
+      if ($("#cbViolation2").is(':checked')) searchViolations += "2,";
+
+      whereClause += " AND " + searchViolations.slice(0, searchViolations.length - 1) + ")";
+    }
+    else {
+
+      var open1 = $("#cbOpen1").is(':checked');
+      var open2 = $("#cbOpen2").is(':checked');
+      var open3 = $("#cbOpen3").is(':checked');
+      
+      var inUse1 = $("#cbInUse1").is(':checked');
+      var fire1 = $("#cbFire1").is(':checked');
+      
+      //is open
+      var searchOpen = "'Open flag' IN (-1,";
+      if (open1)
+        searchOpen += "1,";
+      if (open2)
+        searchOpen += "0,";
+      if (open3)
+        searchOpen += "2,";
+
+      whereClause += " AND " + searchOpen.slice(0, searchOpen.length - 1) + ")";
+      
+      //in use
+      if (inUse1)
+        whereClause += " AND 'In use flag' = 1";
+      
+      //fire
+      if (fire1)
+        whereClause += " AND 'Fire flag' = 1";
+          
+      whereClause += " AND 'DATE RECEIVED' >= '" + $('#startDate').html() + "'";
+      whereClause += " AND 'DATE RECEIVED' <= '" + $('#endDate').html() + "'";
+    }
 
     if (address != "") {
       if (address.toLowerCase().indexOf(MapsLib.locationScope) == -1)
@@ -218,13 +229,26 @@ var MapsLib = {
 
   submitSearch: function(whereClause, map) {
     //get using all filters
-    MapsLib.searchrecords = new google.maps.FusionTablesLayer({
-      query: {
-        from:   MapsLib.fusionTableId,
-        select: MapsLib.locationColumn,
-        where:  whereClause
-      }
-    });
+    if (MapsLib.violationsMode) {
+      MapsLib.searchrecords = new google.maps.FusionTablesLayer({
+        query: {
+          from:   MapsLib.fusionTableId,
+          select: MapsLib.locationColumn,
+          where:  whereClause
+        },
+        styleId: 2,
+        templateId: 2
+      });
+    }
+    else {
+      MapsLib.searchrecords = new google.maps.FusionTablesLayer({
+        query: {
+          from:   MapsLib.fusionTableId,
+          select: MapsLib.locationColumn,
+          where:  whereClause
+        }
+      });
+    }
     MapsLib.searchrecords.setMap(map);
     MapsLib.displayCount(whereClause);
   },
