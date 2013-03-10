@@ -48,9 +48,6 @@ var MapsLib = {
   violationsMode:     false,
 
   initialize: function() {
-    MapsLib.initializeDateSlider();
-    $( "#resultCount" ).html("");
-
     geocoder = new google.maps.Geocoder();
     var myOptions = {
       zoom: MapsLib.defaultZoom,
@@ -70,6 +67,19 @@ var MapsLib = {
     $("#cbOpen1").attr("checked", "checked");
     $("#cbOpen2").attr("checked", "checked");
     $("#cbOpen3").attr("checked", "checked");
+
+
+    //ranges for our slider
+    var minDate = moment("Jan 1 2010"); // Jan 1st 2010
+    var maxDate = moment(); //now
+
+    //starting values
+    var startDate = moment().subtract('months', 3); //past 3 months
+    var endDate = moment(); //now
+
+    MapsLib.initializeDateSlider(minDate, maxDate, startDate, endDate, "days", 7);
+
+    $( "#resultCount" ).html("");
 
     MapsLib.setDemographicsLabels("0&ndash;20%", "20&ndash;40%", "40&ndash;62%");
 
@@ -118,34 +128,45 @@ var MapsLib = {
     MapsLib.doSearch();
   },
 
-  initializeDateSlider: function() {
-    var minDate = new Date(2010, 1-1, 1);
-    var maxDate = new Date();
-    var initialStartDate = new Date();
-    initialStartDate.setDate(maxDate.getDate() - 90);
-    $('#minDate').html($.datepicker.formatDate('M yy', minDate));
-    $('#maxDate').html($.datepicker.formatDate('M yy', maxDate));
+  initializeDateSlider: function(minDate, maxDate, startDate, endDate, stepType, step) {
+    var interval = MapsLib.sliderInterval(stepType);
+
+    $('#minDate').html(minDate.format('MMM YYYY')); //Jan 2010
+    $('#maxDate').html(maxDate.format('MMM YYYY')); //Mar 2013
     
-    $('#startDate').html($.datepicker.formatDate('mm/dd/yy', initialStartDate));
-    $('#endDate').html($.datepicker.formatDate('mm/dd/yy', maxDate));
+    $('#startDate').html(startDate.format('L'));
+    $('#endDate').html(endDate.format('L'));
     
     $('#date-range').slider({
       range: true,
-      step: 30,
-      values: [ Math.floor((initialStartDate.getTime() - minDate.getTime()) / 86400000), Math.floor((maxDate.getTime() - minDate.getTime()) / 86400000) ],
-        max: Math.floor((maxDate.getTime() - minDate.getTime()) / 86400000),
+      step: step,
+      values: [ Math.floor((startDate.valueOf() - minDate.valueOf()) / interval), Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval) ],
+        max: Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval),
         slide: function(event, ui) {
-            var date = new Date(minDate.getTime());
-            date.setDate(date.getDate() + ui.values[0]);
-            $('#startDate').html($.datepicker.formatDate('mm/dd/yy', date));
-            date = new Date(minDate.getTime());
-            date.setDate(date.getDate() + ui.values[1]);
-            $('#endDate').html($.datepicker.formatDate('mm/dd/yy', date));
+            $('#startDate').html(minDate.clone().add(stepType, ui.values[0]).format('L'));
+            $('#endDate').html(minDate.clone().add(stepType, ui.values[1]).format('L'));
         },
         stop: function(event, ui) {
           MapsLib.doSearch();
         }
     });
+  },
+
+  sliderInterval: function(interval) {
+    if (interval == "years")
+      return 365 * 24 * 3600 * 1000;
+    if (interval == "quarters")
+      return 3 * 30.4 * 24 * 3600 * 1000;
+    if (interval == "months") //this is very hacky. months have different day counts, so our point interval is the average - 30.4
+      return 30.4 * 24 * 3600 * 1000;
+    if (interval == "weeks")
+      return 7 * 24 * 3600 * 1000;
+    if (interval == "days")
+      return 24 * 3600 * 1000;
+    if (interval == "hours")
+      return 3600 * 1000;
+    else
+      return 1;
   },
 
   doSearch: function() {
