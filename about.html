@@ -77,12 +77,12 @@
 			<p><iframe width="815" height="400" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?gco_displayAnnotations=true&gco_wmode=opaque&containerId=gviz_canvas&rmax=250&q=select+col1%2C+count()+from+3631508+where+col1+%3E%3D+'1%2F1%2F2010'&qrs=+and+col1+%3E%3D+&qre=+and+col1+%3C%3D+&qe=+group+by++col1+order+by+col1+asc&viz=GVIZ&t=TIMELINE&width=815&height=400"></iframe></p>
 			
 			<h2 id="were-there-problems-with-the-data">Were there problems with the data?</h2>
-			<p>There were! The 311 data from the City is published in a very raw format. A lot of fields were not normalized (had multiple values that meant the same thing), and an entire column (‘Is this building dangerous or hazardous?’) was completely blank for all rows. I compensated for this with a <a href="https://github.com/derekeder/Socrata-to-FusionTables">PHP script</a> that pulls the data from the City’s Data Portal and cleans up specific columns based on keywords I found that were common in meaning. For data fields that were blank, I flagged them as ‘unknown’.</a>
+			<p>There were! The 311 data from the City is published in a very raw format. A lot of fields were not normalized (had multiple values that meant the same thing), and an entire column (‘Is this building dangerous or hazardous?’) was completely blank for all rows. I compensated for this with a <a href="https://github.com/open-city/vacant-building-finder-import">PHP script</a> that pulls the data from the City’s Data Portal and cleans up specific columns based on keywords I found that were common in meaning. For data fields that were blank, I flagged them as ‘unknown’.</a>
 
 			<p>The <a href="http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd">311 Service Requests - Vacant and Abandoned Buildings Reported</a> dataset has been published since January 2011, and I hope the City plans on revisiting it and cleaning up the data soon.</p>
 			
 			<h2 id="what-did-you-use-to-build-it">What did you use to build it?</h2>
-			<p>This site is built with HTML, CSS, Javascript and Google's Fusion Tables and Maps API. The data is stored in Fusion Tables and is updated every week by a <a href='https://github.com/derekeder/Socrata-to-FusionTables'>PHP script I wrote</a> to import the data directly from the <a href='http://data.cityofchicago.org/'>City of Chicago Data Portal</a>.</p>
+			<p>This site is built with HTML, CSS, Javascript and Google's Fusion Tables and Maps API. The data is stored in Fusion Tables and is updated every week by a <a href='https://github.com/open-city/vacant-building-finder-import'>PHP script I wrote</a> to import the data directly from the <a href='http://data.cityofchicago.org/'>City of Chicago Data Portal</a>.</p>
 			
 			<p>Technologies used:</p>
 			<ul>
@@ -93,8 +93,8 @@
 			
 			<p>If you are interested, all the code for this project is up on <a href='http://github.com'>github</a>:</p>
 			<ul>
-				<li><a href='https://github.com/derekeder/Chicago-Buildings'>Chicago-Buildings</a> (this site)</li>
-				<li><a href='https://github.com/derekeder/Socrata-to-FusionTables'>Socrata to Fusion Tables script</a></li> 				</ul>
+				<li><a href='https://github.com/open-city/vacant-building-finder'>vacant-building-finder</a> (this site)</li>
+				<li><a href='https://github.com/open-city/vacant-building-finder-import'>vacant-building-finder-import</a></li> 				</ul>
 				
 			<h2 id="credits">Credits</h2>
 			<p>This site was built, designed and hosted entirely by Derek Eder in his own free time for no money. Special thanks to Cristina Sladana from <a href='http://www.fritchey.com/'>Cook County Commissioner Fritchey's Office</a>, Danielle DuMerer from Chicago's <a href='http://www.cityofchicago.org/city/en/depts/doit.html'>Department of Innovation and Technology</a>, Bill McCaffrey from Chicago's <a href="http://www.cityofchicago.org/city/en/depts/bldgs.html">Department of Buildings</a> and Chet Jackson from the <a href='http://www.whpdevelopmentcouncil.net/'>West Humboldt Park Development Council</a> for answering all my annoying questions.</p> 
