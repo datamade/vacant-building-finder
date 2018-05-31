@@ -18,7 +18,7 @@ var MapsLib = {
 
   //the encrypted Table ID of your Fusion Table (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId: "1fK7H4ZDsWT-9sa09CjuJft3UBzxGcQlyPRBygEc", //main table for building data
+  fusionTableId: "1tl2KeM3wlZ80_4N-IXLyIpVf42Mm6IkQSrPoOng", //main table for building data
   
   povertyTableId: "15FyZq0hRcxUg9uCO_2DZm6vLvxKGpEwaMHs00lw",
   unemploymentTableId: "1YB3wtRv-UZXkJ8N1T83MDmOvA1ccuP_M1vHNOQs",
