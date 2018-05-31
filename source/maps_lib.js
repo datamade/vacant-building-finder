@@ -111,10 +111,22 @@ var MapsLib = {
     MapsLib.recordName = "violation";       //for showing number of results
     MapsLib.recordNamePlural = "violations";
 
+    // disable Google's points of interest markers in the basemap
+    var basemapStyles =[
+        {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [
+                  { visibility: "off" }
+            ]
+        }
+    ];
+
     var myOptions = {
       zoom: MapsLib.defaultZoom,
       center: MapsLib.map_centroid,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      styles: basemapStyles
     };
     map = new google.maps.Map($("#map_canvas")[0],myOptions);
 
