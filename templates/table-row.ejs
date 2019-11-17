@@ -1,0 +1,17 @@
+<tr>                  
+    <td>
+        <span class="filter-box filter-<%= CartoDbLib.getColor(obj.status) %>"></span>
+    </td>
+    <td>
+        <%= obj.street_address %>
+    </td>                  
+    <td><%= obj.sr_number %></td>                  
+    <td><%= moment(obj.created_date).format("MMM D YYYY, h:mm a") %></td>
+    <td>
+        <% if (obj.closed_date) { %>
+            <%= moment(obj.closed_date).format("MMM D YYYY, h:mm a") %>
+        <% } else { %>
+            Open request
+        <% } %>
+    </td>
+</tr>
