@@ -10,11 +10,10 @@ $(function() {
   CartoDbLib.initialize({
     map_centroid: [41.881832, -87.623177],
     defaultZoom:  11,
-    layerUrl:     'https://datamade.carto.com/api/v2/viz/511041df-fea2-497e-904c-21b9cf778f9d/viz.json',
-    tableName:    'table_311_vacant_abandoned_building_complaints',
+    layerUrl:     'https://datamade.carto.com/api/v2/viz/517f68fb-bd82-40f9-bd5e-356fabd5d8ac/viz.json',
+    tableName:    'ordinance_violations_vacant_abandoned_buildings_merge',
     userName:     'datamade',
-    fields :      'cartodb_id, the_geom, sr_number, parent_sr_number, status, closed_date, created_date, duplicate, last_modified_date, legacy_record, legacy_sr_number, sr_type, street_address, police_beat, police_district, police_sector, precinct, community_area, ward, zip_code',
-  });
+    fields :      'cartodb_id, the_geom, sr_number, parent_sr_number, status, closed_date, created_date, duplicate, last_modified_date, legacy_record, legacy_sr_number, sr_type, street_address, police_beat, police_district, police_sector, precinct, community_area, ward, zip_code, violation_code, violation_date,violation_description,respondents,imposed_fine,hearing_date,docket_number,case_disposition', });
 
   var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search-address'));
   var modalURL;

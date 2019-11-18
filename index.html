@@ -117,14 +117,16 @@
 
                       <div class="checkbox">
                         <label>
+                          <span class='filter-box filter-red'></span>
                           <input type="checkbox" value="" id='cbType1'>
-                          Open requests
+                          Violation
                         </label>
                       </div>
                       <div class="checkbox">
                         <label>
+                          <span class='filter-box filter-yellow'></span>
                           <input type="checkbox" value="" id='cbType2'>
-                          Completed requests
+                          No violation
                         </label>
                       </div>
                     </div>
@@ -191,6 +193,8 @@
             marker-fill: #FFCC0D;
             marker-allow-overlap: true;
           }
+
+          #my-map[docket_number != null] { marker-fill: #CC2537; }
         </style>
 
         <script type="text/javascript" src="/js/map.js"></script>

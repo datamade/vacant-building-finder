@@ -1,5 +1,5 @@
 <h4>
-    <span class="filter-box filter-<%= CartoDbLib.getColor(obj.status) %>"></span>
+    <span class="filter-box filter-<%= CartoDbLib.getColor(obj.docket_number) %>"></span>
     <strong><%= obj.street_address %></strong>
 </h4>
 <td>
@@ -9,4 +9,26 @@
     Request #<%= obj.sr_number %><br />                  
     Opened on <%= obj.created_date %><br /> 
     Closed on <%= obj.closed_date %>
+
+    duplicate: <%= obj.duplicate %><br />
+    last_modified_date: <%= obj.last_modified_date %><br />
+    legacy_record: <%= obj.legacy_record %><br />
+    legacy_sr_number: <%= obj.legacy_sr_number %><br />
+    sr_type: <%= obj.sr_type %><br />
+    street_address: <%= obj.street_address %><br />
+    police_beat: <%= obj.police_beat %><br />
+    police_district: <%= obj.police_district %><br />
+    police_sector: <%= obj.police_sector %><br />
+    precinct: <%= obj.precinct %><br />
+    community_area: <%= obj.community_area %><br />
+    ward: <%= obj.ward %><br />
+    zip_code: <%= obj.zip_code %><br />
+    violation_code: <%= obj.violation_code %><br />
+    violation_date: <%= obj.violation_date %><br />
+    violation_description: <%= obj.violation_description %><br />
+    respondents: <%= obj.respondents %><br />
+    imposed_fine: <%= obj.imposed_fine %><br />
+    hearing_date: <%= obj.hearing_date %><br />
+    docket_number: <%= obj.docket_number %><br />
+    case_disposition : <%= obj.case_disposition  %><br />
 </p>

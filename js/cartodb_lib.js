@@ -202,7 +202,7 @@ var CartoDbLib = {
         }
         else {
           var row_content;
-          $.get( "/templates/table-row.ejs?3", function( template ) {
+          $.get( "/templates/table-row.ejs?4", function( template ) {
               for (idx in obj_array) {
 
                 row_content = ejs.render(template, {obj: obj_array[idx]});
@@ -231,7 +231,7 @@ var CartoDbLib = {
   modalPop: function(data) {
 
     var modal_content;
-    $.get( "/templates/popup.ejs", function( template ) {
+    $.get( "/templates/popup.ejs?1", function( template ) {
         modal_content = ejs.render(template, {obj: data});
         $('#modal-pop').modal();
         $('#modal-main').html(modal_content);
@@ -264,11 +264,14 @@ var CartoDbLib = {
 
     //-----custom filters-----
 
-    var type_column = "status";
-    var searchType = type_column + " IN ('',";
-    if ( $("#cbType1").is(':checked')) searchType += "'Open',";
-    if ( $("#cbType2").is(':checked')) searchType += "'Completed',";
-    CartoDbLib.whereClause += " AND " + searchType.slice(0, searchType.length - 1) + ")";
+    if ( $("#cbType1").is(':checked') && $("#cbType2").is(':checked'))
+      CartoDbLib.whereClause += " AND (docket_number is not null OR docket_number is null)";
+    else {
+      if ( $("#cbType1").is(':checked'))
+        CartoDbLib.whereClause += " AND docket_number is not null ";
+      if ( $("#cbType2").is(':checked'))
+        CartoDbLib.whereClause += " AND docket_number is null ";
+    }
     // -----end of custom filters-----
 
     if (CartoDbLib.geoSearch != "") {
@@ -316,7 +319,8 @@ var CartoDbLib = {
   },
 
   // -----custom functions-----
-  getColor: function(status){
+  getColor: function(docket_number){
+    if (docket_number != null) return 'red';
     return 'yellow';
   },
   // -----end custom functions-----
