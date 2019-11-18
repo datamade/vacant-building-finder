@@ -7,6 +7,16 @@ $(window).resize(function () {
 
 $(function() {
 
+  $('#start-date').val(moment().subtract(3, 'months').format('YYYY-MM-DD')); //default start 1 month ago
+  $('#start-date').datepicker({
+      format: 'yyyy-mm-dd'
+  });
+
+  $('#end-date').val(moment().format('YYYY-MM-DD')); //end on today
+  $('#end-date').datepicker({
+      format: 'yyyy-mm-dd'
+  });
+
   CartoDbLib.initialize({
     map_centroid: [41.881832, -87.623177],
     defaultZoom:  11,
@@ -20,16 +30,6 @@ $(function() {
 
   var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search-address'));
   var modalURL;
-
-  $('#start-date').val(moment().subtract(3, 'months').format('YYYY-MM-DD')); //default start 3 months ago
-  $('#start-date').datepicker({
-      format: 'yyyy-mm-dd'
-  });
-
-  $('#end-date').val(moment().format('YYYY-MM-DD')); //end on today
-  $('#end-date').datepicker({
-      format: 'yyyy-mm-dd'
-  });
 
   $('#btnSearch').click(function(){
     // Temporary fix for map load issue: set show map as default.
