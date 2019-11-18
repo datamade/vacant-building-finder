@@ -5,14 +5,14 @@
 
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta content='Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since January 1, 2010.' name='description'>
+    <meta content='Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since July 1, 2018.' name='description'>
     <meta content='Vacant and Abandoned Building Finder - Chicago' name='author'>
 
     <!-- Facebook metadata -->
     <meta content="Vacant and Abandoned Building Finder - Chicago" property="og:site_name">
     <meta content="Vacant and Abandoned Building Finder - Chicago" property="og:title">
     <meta content="website" property="og:type">
-    <meta content="Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since January 1, 2010." property="og:description">
+    <meta content="Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since July 1, 2018." property="og:description">
     <meta content="https://chicagobuildings.org/" property="og:url">
     <meta content="https://chicagobuildings.org/images/screenshot.jpg" property="og:image">
     
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@DataMadeCo">
     <meta name="twitter:title" content="Vacant and Abandoned Building Finder - Chicago">
     <meta name="twitter:url" content="https://chicagobuildings.org/">
-    <meta name="twitter:description" content="Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since January 1, 2010.">
+    <meta name="twitter:description" content="Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since July 1, 2018.">
     <meta name="twitter:image:src" content="https://chicagobuildings.org/images/screenshot.jpg">
 
 
@@ -31,6 +31,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css">
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" rel="stylesheet">
@@ -43,9 +44,11 @@
     <script src="/lib/ejs.min.js"></script>
     <script src="/lib/jquery.address.js"></script>
     <script src="/lib/moment.js"></script>
+    <script src="/lib/bootstrap-datepicker.min.js"></script>
+    
 
     <!-- CARTO JavaScript -->
-    <script src="https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyAtLJ5XbO21UrxRTtjmn8uoahFmI-qGeA0"></script>
+    <script src="https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyBhlf7Ayk_8nYYW5siUMTXXwvI-A6va_m0"></script>
     <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
     <script src="/lib/leaflet-google.js" ></script>
     
@@ -84,7 +87,7 @@
 
       <div class='row'>
         <div class="col-md-4">
-          <p>Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since January 1, 2010. <a href='/about.html'>Read more &raquo;</a></p>
+          <p>Find vacant and abandoned buildings in Chicago. Data comes from reports made for open and vacant buildings to 311 since July 1, 2018. <a href='/about.html'>Read more &raquo;</a></p>
 
           <div class="card bg-light">
             <div class="card-body">
@@ -111,9 +114,35 @@
               </div>
 
               <div class='row'>
+                <div class="col-md-6">
+                  <div class="form-group">
+                      Start date
+                      <div class="input-group mb-2">
+                        <input class='form-control' id='start-date' placeholder='' type='text'>
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class='fa fa-calendar'></i></div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class='form-group'>
+                      End date
+                      <div class="input-group mb-2">
+                        <input class='form-control' id='end-date' placeholder='' type='text'>
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class='fa fa-calendar'></i></div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class='row'>
                 <div class="col-md-8">
                   <div class='form-group'>
-                      Report types
+                      Violations
 
                       <div class="checkbox">
                         <label>
@@ -154,7 +183,7 @@
                       <th scope="col">Address</th>
                       <th scope="col">Request #</th>
                       <th scope="col">Reported on</th>
-                      <th scope="col">Completed on</th>
+                      <th scope="col">Violations</th>
                     </tr>
                   </thead>
                   <tbody id='results-list'></tbody>

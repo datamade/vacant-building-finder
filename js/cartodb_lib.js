@@ -8,6 +8,8 @@ var CartoDbLib = {
   tableName: '',
   userName: '',
   fields: '',
+  listOrderBy: '',
+  googleApiKey: '',
 
   // internal properties
   geoSearch: '',
@@ -27,6 +29,8 @@ var CartoDbLib = {
     CartoDbLib.tableName = options.tableName || "",
     CartoDbLib.userName = options.userName || "",
     CartoDbLib.fields = options.fields || "",
+    CartoDbLib.listOrderBy = options.listOrderBy || "",
+    CartoDbLib.googleApiKey = options.googleApiKey || "",
 
     //reset filters
     $("#search-address").val(CartoDbLib.convertToPlainString($.address.parameter('address')));
@@ -67,12 +71,11 @@ var CartoDbLib = {
 
       // method that we will use to update the control based on feature properties passed
       var hover_template;
-      $.get( "/templates/hover.ejs", function( template ) {
+      $.get( "/templates/hover.ejs?1", function( template ) {
         hover_template = template;
       });
       CartoDbLib.info.update = function (props) {
         if (props) {
-          console.log(props)
           this._div.innerHTML = ejs.render(hover_template, {obj: props});
         }
         else {
@@ -191,8 +194,12 @@ var CartoDbLib = {
       CartoDbLib.whereClause = '';
     }
 
+    var sortClause = '';
+    if (CartoDbLib.listOrderBy != '')
+      sortClause = 'ORDER BY ' + CartoDbLib.listOrderBy;
+
     results.empty();
-    sql.execute("SELECT " + CartoDbLib.fields + " FROM " + CartoDbLib.tableName + CartoDbLib.whereClause + " ORDER BY created_date DESC")
+    sql.execute("SELECT " + CartoDbLib.fields + " FROM " + CartoDbLib.tableName + CartoDbLib.whereClause + sortClause)
       .done(function(listData) {
         var obj_array = listData.rows;
 
@@ -202,7 +209,7 @@ var CartoDbLib = {
         }
         else {
           var row_content;
-          $.get( "/templates/table-row.ejs?4", function( template ) {
+          $.get( "/templates/table-row.ejs?7", function( template ) {
               for (idx in obj_array) {
 
                 row_content = ejs.render(template, {obj: obj_array[idx]});
@@ -223,7 +230,7 @@ var CartoDbLib = {
       .done(function(data) {
         CartoDbLib.resultsCount = data.rows[0]["count"];
         CartoDbLib.results_div.update(CartoDbLib.resultsCount);
-        $('#list-result-count').html(CartoDbLib.resultsCount + ' vacant/abandoned building complaints found')
+        $('#list-result-count').html(CartoDbLib.resultsCount + ' vacant/abandoned buildings found')
       }
     );
   },
@@ -231,7 +238,7 @@ var CartoDbLib = {
   modalPop: function(data) {
 
     var modal_content;
-    $.get( "/templates/popup.ejs?1", function( template ) {
+    $.get( "/templates/popup.ejs?7", function( template ) {
         modal_content = ejs.render(template, {obj: data});
         $('#modal-pop').modal();
         $('#modal-main').html(modal_content);
@@ -260,9 +267,14 @@ var CartoDbLib = {
       CartoDbLib.geoSearch = ''
     }
 
-    CartoDbLib.whereClause = " WHERE the_geom is not null AND created_date > '2019-09-01' ";
+    CartoDbLib.whereClause = " WHERE the_geom is not null ";
 
     //-----custom filters-----
+
+    if ($('#start-date').val())
+      CartoDbLib.whereClause += " AND created_date >= '" + $('#start-date').val() + "'";
+    if ($('#end-date').val())
+      CartoDbLib.whereClause += " AND created_date <= '" + $('#end-date').val() + "'";
 
     if ( $("#cbType1").is(':checked') && $("#cbType2").is(':checked'))
       CartoDbLib.whereClause += " AND (docket_number is not null OR docket_number is null)";
@@ -277,6 +289,8 @@ var CartoDbLib = {
     if (CartoDbLib.geoSearch != "") {
       CartoDbLib.whereClause += CartoDbLib.geoSearch;
     }
+
+    // console.log(CartoDbLib.whereClause)
   },
 
   setZoom: function() {

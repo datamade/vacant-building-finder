@@ -2,4 +2,4 @@
     <%= obj.street_address %>
 </strong><br />
 Request #<%= obj.sr_number %><br />
-Reported on: <%= obj.created_date %><br />
+Reported on: <%= moment(obj.created_date).format("MMM D YYYY, h:mm a") %><br />

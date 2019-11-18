@@ -8,10 +8,13 @@
     <td><%= obj.sr_number %></td>                  
     <td><%= moment(obj.created_date).format("MMM D YYYY, h:mm a") %></td>
     <td>
-        <% if (obj.closed_date) { %>
-            <%= moment(obj.closed_date).format("MMM D YYYY, h:mm a") %>
+        <% if (obj.violation_code) { %>
+            <%= obj.violation_description %><br />
+            <strong>Date:</strong> <%= moment(obj.violation_date).format("MMM D YYYY, h:mm a") %><br />
+            <strong>Respondents:</strong> <%= obj.respondents %><br />
+            <strong>Fine:</strong> $<%= obj.imposed_fine.toLocaleString('en') %>
         <% } else { %>
-            Open request
+            None found
         <% } %>
     </td>
 </tr>
