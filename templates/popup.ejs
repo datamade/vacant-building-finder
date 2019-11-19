@@ -32,6 +32,13 @@
             Precinct: <%= obj.precinct %><br />
             Zip_code: <%= obj.zip_code %><br />
         </p>
+
+        <h5>Resources</h5>
+        <p>
+            <a href='https://ipiweb.cityofchicago.org/VBR/Default.aspx' target='_blank'>Check this building's status with the city »</a><br />
+            <a href='https://311.chicago.gov/s/article/Vacant-buildings?language=en_US' target='_blank'>Report this building to 311 again »</a><br />
+            <a href='https://chicagobuildings.org/faq.html#data-on-ownership' target='_blank'>Find documents associated with this property »</a><br />
+        </p>
     </div>
     <div class='col-md-6'>
         <img class="img-thumbnail" src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=<%= obj.street_address %>%20Chicago%20IL&key=<%= CartoDbLib.googleApiKey %>" alt="<%= obj.street_address %>" title="<%= obj.street_address %>" />

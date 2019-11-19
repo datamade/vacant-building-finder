@@ -260,7 +260,7 @@ var CartoDbLib = {
   modalPop: function(data) {
 
     var modal_content;
-    $.get( "/templates/popup.ejs?7", function( template ) {
+    $.get( "/templates/popup.ejs?8", function( template ) {
         modal_content = ejs.render(template, {obj: data});
         $('#modal-pop').modal();
         $('#modal-main').html(modal_content);
