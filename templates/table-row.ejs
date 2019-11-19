@@ -1,0 +1,20 @@
+<tr>                  
+    <td>
+        <span class="filter-box filter-<%= CartoDbLib.getColor(obj.docket_number) %>"></span>
+    </td>
+    <td>
+        <%= obj.street_address %>
+    </td>                  
+    <td><%= obj.sr_number %></td>                  
+    <td><%= moment(obj.created_date).format("MMM D YYYY, h:mm a") %></td>
+    <td>
+        <% if (obj.violation_code) { %>
+            <%= obj.violation_description %><br />
+            <strong>Date:</strong> <%= moment(obj.violation_date).format("MMM D YYYY, h:mm a") %><br />
+            <strong>Respondents:</strong> <%= obj.respondents %><br />
+            <strong>Fine:</strong> $<%= obj.imposed_fine.toLocaleString('en') %>
+        <% } else { %>
+            None found
+        <% } %>
+    </td>
+</tr>

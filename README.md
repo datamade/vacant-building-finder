@@ -2,18 +2,17 @@
 A tool for finding buildings in Chicago.
   
 ## Dependencies
-The code for this site is based on Derek Eder's [Searchable Map Template](http://derekeder.com/searchable_map_template/). 
 
-* [Google Fusion Tables](http://www.google.com/fusiontables/Home)
-* [Google Maps API V3](https://developers.google.com/maps/documentation/javascript)
-* [jQuery](http://jquery.org)
-* [jQuery Address](http://www.asual.com/jquery/address)
-* [Moment.js](http://momentjs.com)
-
+* [CartoDB](https://carto.com)
+* [Leaflet](https://leafletjs.com)
+* [jQuery 3.3.1](https://jquery.com/)
+* [jQuery Address](https://github.com/asual/jquery-address)
+* [Bootstrap 4](https://getbootstrap.com/)
+* [Moment.js](https://momentjs.com/)
 
 ## Still can't figure it out or more detail needed?
 
-Email me! [Derek Eder](mailto:derek.eder+git@gmail.com)
+Email me! [Derek Eder](mailto:derek.eder@datamade.us)
 
 ## Contributors 
 
@@ -29,6 +28,6 @@ Also a big thanks to my wife Aya for designing the logo, proofing and giving des
 
 ## Copyright
 
-Copyright (c) 2011 Derek Eder. Released under the MIT License.
+Copyright (c) 2011 Derek Eder and DataMade. Released under the MIT License.
 
-See [LICENSE](https://github.com/open-city/vacant-building-finder/wiki/License) for details 
+See [LICENSE](https://github.com/datamade/vacant-building-finder/wiki/License) for details 

@@ -1,0 +1,46 @@
+<div class='row'>
+    <div class='col-md-6'>
+        <h4>
+            <span class="filter-box filter-<%= CartoDbLib.getColor(obj.docket_number) %>"></span>
+            <strong><%= obj.street_address %></strong>
+        </h4>
+        <td>
+            
+        </td>                  
+        <p>
+            Request #<%= obj.sr_number %><br />                  
+            Opened on <%= moment(obj.created_date).format("MMM D YYYY, h:mm a") %>
+        </p>
+
+        <h5>Violations</h5>
+        <p>
+            <% if (obj.violation_code) { %>
+                <%= obj.violation_description %><br />
+                <strong>Date:</strong> <%= moment(obj.violation_date).format("MMM D YYYY, h:mm a") %><br />
+                <strong>Respondents:</strong> <%= obj.respondents %><br />
+                <strong>Fine:</strong> $<%= obj.imposed_fine.toLocaleString('en') %>
+            <% } else { %>
+                No violations found
+            <% } %>
+        </p>
+
+        <h5>Location details</h5>
+        <p>
+            Ward: <%= obj.ward %><br />
+            Community_area: <%= obj.community_area %><br />
+            Police_beat: <%= obj.police_beat %><br />
+            Precinct: <%= obj.precinct %><br />
+            Zip_code: <%= obj.zip_code %><br />
+        </p>
+
+        <h5>Resources</h5>
+        <p>
+            <a href='https://ipiweb.cityofchicago.org/VBR/Default.aspx' target='_blank'>Check this building's status with the city »</a><br />
+            <a href='https://311.chicago.gov/s/article/Vacant-buildings?language=en_US' target='_blank'>Report this building to 311 again »</a><br />
+            <a href='https://chicagobuildings.org/faq.html#data-on-ownership' target='_blank'>Find documents associated with this property »</a><br />
+        </p>
+    </div>
+    <div class='col-md-6'>
+        <img class="img-thumbnail" src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=<%= obj.street_address %>%20Chicago%20IL&key=<%= CartoDbLib.googleApiKey %>" alt="<%= obj.street_address %>" title="<%= obj.street_address %>" />
+    </div>
+</div>
