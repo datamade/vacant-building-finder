@@ -10,6 +10,8 @@ var CartoDbLib = {
   fields: '',
   listOrderBy: '',
   googleApiKey: '',
+  recordName: '',
+  recordNamePlural: '',
 
   // internal properties
   geoSearch: '',
@@ -31,6 +33,8 @@ var CartoDbLib = {
     CartoDbLib.fields = options.fields || "",
     CartoDbLib.listOrderBy = options.listOrderBy || "",
     CartoDbLib.googleApiKey = options.googleApiKey || "",
+    CartoDbLib.recordName = options.recordName || "result",
+    CartoDbLib.recordNamePlural = options.recordNamePlural || "results",
 
     //reset filters
     $("#search-address").val(CartoDbLib.convertToPlainString($.address.parameter('address')));
@@ -79,12 +83,12 @@ var CartoDbLib = {
           this._div.innerHTML = ejs.render(hover_template, {obj: props});
         }
         else {
-          this._div.innerHTML = 'Hover over a location';
+          this._div.innerHTML = 'Hover over a ' + CartoDbLib.recordName;
         }
       };
 
       CartoDbLib.info.clear = function(){
-        this._div.innerHTML = 'Hover over a location';
+        this._div.innerHTML = 'Hover over a ' + CartoDbLib.recordName;
       };
 
       //add results control
@@ -97,7 +101,12 @@ var CartoDbLib = {
       };
 
       CartoDbLib.results_div.update = function (count){
-        this._div.innerHTML = count + ' locations found';
+        var recname = CartoDbLib.recordNamePlural;
+        if (count == 1) {
+            recname = CartoDbLib.recordName;
+        }
+
+        this._div.innerHTML = count.toLocaleString('en') + ' ' + recname + ' found';
       };
 
       CartoDbLib.results_div.addTo(CartoDbLib.map);
@@ -230,7 +239,13 @@ var CartoDbLib = {
       .done(function(data) {
         CartoDbLib.resultsCount = data.rows[0]["count"];
         CartoDbLib.results_div.update(CartoDbLib.resultsCount);
-        $('#list-result-count').html(CartoDbLib.resultsCount + ' vacant/abandoned buildings found')
+
+        var recname = CartoDbLib.recordNamePlural;
+        if (CartoDbLib.resultsCount == 1) {
+            recname = CartoDbLib.recordName;
+        }
+
+        $('#list-result-count').html(CartoDbLib.resultsCount.toLocaleString('en') + ' ' + recname + ' found')
       }
     );
   },
@@ -276,6 +291,7 @@ var CartoDbLib = {
     if ($('#end-date').val())
       CartoDbLib.whereClause += " AND created_date <= '" + $('#end-date').val() + "'";
 
+    // this logic is a bit funny since we're keying off the presence of a value instead of a type column
     if ( $("#cbType1").is(':checked') && $("#cbType2").is(':checked'))
       CartoDbLib.whereClause += " AND (docket_number is not null OR docket_number is null)";
     else {

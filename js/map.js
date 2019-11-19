@@ -26,6 +26,8 @@ $(function() {
     fields :      'cartodb_id, the_geom, sr_number, parent_sr_number, status, closed_date, created_date, duplicate, last_modified_date, legacy_record, legacy_sr_number, sr_type, street_address, police_beat, police_district, police_sector, precinct, community_area, ward, zip_code, violation_code, violation_date,violation_description,respondents,imposed_fine,hearing_date,docket_number,case_disposition',
     listOrderBy: 'created_date DESC',
     googleApiKey: 'AIzaSyBhlf7Ayk_8nYYW5siUMTXXwvI-A6va_m0',
+    recordName: 'vacant/abandoned building',
+    recordNamePlural: 'vacant/abandoned buildings',
      });
 
   var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search-address'));
