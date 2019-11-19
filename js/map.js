@@ -18,7 +18,7 @@ $(function() {
   });
 
   CartoDbLib.initialize({
-    map_centroid: [41.881832, -87.623177],
+    map_centroid: [41.85754, -87.66231],
     defaultZoom:  11,
     layerUrl:     'https://datamade.carto.com/api/v2/viz/517f68fb-bd82-40f9-bd5e-356fabd5d8ac/viz.json',
     tableName:    'ordinance_violations_vacant_abandoned_buildings_merge',
