@@ -358,7 +358,7 @@ var CartoDbLib = {
   // -----custom functions-----
   getColor: function(docket_number){
     if (docket_number != null) return 'red';
-    return 'yellow';
+    return 'blue';
   },
   // -----end custom functions-----
 
