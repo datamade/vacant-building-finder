@@ -28,6 +28,6 @@ Also a big thanks to my wife Aya for designing the logo, proofing and giving des
 
 ## Copyright
 
-Copyright (c) 2011 Derek Eder and DataMade. Released under the MIT License.
+Copyright (c) 2019 Derek Eder and DataMade. Released under the MIT License.
 
 See [LICENSE](https://github.com/datamade/vacant-building-finder/wiki/License) for details 
