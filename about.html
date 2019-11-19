@@ -84,7 +84,7 @@
                   <li><a href="#why-did-you-make-it">Why did you make it?</a></li>
                   <li><a href="#where-did-you-get-your-data-from">Where did you get your data from?</a></li>
                   <li><a href="#how-many-vacant-buildings-are-there">How many vacant buildings are there?</a></li>
-                  <li><a href="#were-there-problems-with-the-data">Were there problems with the data?</a></li>
+                  <li><a href="#were-there-problems-with-the-data">Are there problems with the data?</a></li>
                   <li><a href="#what-did-you-use-to-build-it">What did you use to build it?</a></li>
                   <li><a href="#credits">Credits</a></li>
                   <li><a href="#press">Press</a></li>
@@ -101,8 +101,6 @@
                 
                 <p><img src='images/screenshot.jpg' alt='Chicago Buildings usage' class='img-thumbnail' /></p>
                 
-                <p>In addition to the building data, I also added in demographic data by neighborhood. This allows anyone to compare each neighborhood to see the correlation between vacant and abandoned buildings and the neighborhoods that surround them. Demographics include poverty rate, unemployment rate, population, and median income.</p>
-                <div class='clear'></div>
                 <h2 id="who-is-it-for">Who is it for?</h2>
                 <p>This tool is free and for anyone who is interested in vacant and abandoned buildings in Chicago. It was built with simplicity in mind; you don't have to be an expert in real estate or Chicago building policy to use it. That being said, it can definitely be used by someone who is, and I hope that it proves to be a useful tool.</p>
                 
@@ -114,7 +112,6 @@
                   <li>By journalists as a research tool.</li>
                   <li>By the City to more efficiently track vacant and abandoned buildings and manage 311 reports.</li>
                   <li>By neighborhood groups and concerned citizens to locate and report vacant and abandoned buildings around them.</li>
-                  <li>By homeless individuals looking for a place to squat (not that this site condones <a href='faq.html#laws-against-occupying'>illegal activity</a> - it's just a possibility).</li>
                   <li>By urban adventurers looking for cool and interesting buildings to explore and photograph (again, this is probably <a href='faq.html#laws-against-occupying'>illegal</a>)</li>
                 </ul>
                 
@@ -124,45 +121,44 @@
                 <p>When the <a href='http://appsformetrochicago.com/'>Apps for Metro Chicago</a> contest was announced, I decided that this tool would be a great candidate for it, so I refined it, expanded it, and spun it off in to it's own site: chicagobuildings.org. It is now a finalist for the Community round I eagerly await the results of the competition.</p>
                 
                 <h2 id="where-did-you-get-your-data-from">Where did you get your data from?</h2>
-                <p>The building data comes from Chicago's 311 reporting service which can be found <a href='http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd'>here</a>. The raw Fusion Tables data in KML format can be seen and downloaded <a href='http://www.google.com/fusiontables/DataSource?dsrcid=3631508'>here</a>.</p>
-                
-                <p>The demographics data comes from a report by the <a href='http://www.chicagosfoodbank.org/'>Greater Chicago Food Depository</a> published on September 21st, 2011. This report can be found <a href='http://www.chicagosfoodbank.org/site/PageServer?pagename=hunger_research'>here</a>. The data in KML format can be downloaded <a href='http://www.google.com/fusiontables/DataSource?dsrcid=1647341'>here</a>.</p>
+                <p>The building data comes from two sources on the City of Chicago Data portal:
+
+                <ul>
+                  <li><a href='https://data.cityofchicago.org/Service-Requests/311-Vacant-Abandoned-Building-Complaints/vauj-4grr/data'>311 - Vacant/Abandoned Building Complaints</a> - Reports to Chicago's 311 system for Vacant/Abandoned Building Complaints</li>
+                  <li><a href='https://data.cityofchicago.org/Administration-Finance/Ordinance-Violations-Vacant-Abandoned-Buildings/rze8-5mca'>Ordinance Violations - Vacant/Abandoned Buildings</a> - List of ordinance violations filed with the Department of Administrative Hearings related to vacant and abandoned buildings.</li>
+                </ul>
                 
                 <h2 id="how-many-vacant-buildings-are-there">How many vacant buildings are there?</h2>
-                <p>Since Jan 1st 2010, there have been 18,949 unique (based on address) vacant buildings reported in Chicago by 311. On average, <strong>19 new buildings</strong> are reported every day.</p>
+                <p>Between November 1, 2018 and November 1, 2019, there have been 5,342 unique vacant buildings (by address) reported to 311. On average, 19 vacant/abandoned buildings are reported each day.</p>
                 
-                <h2 id="were-there-problems-with-the-data">Were there problems with the data?</h2>
-                <p>There were! The 311 data from the City is published in a very raw format. A lot of fields were not normalized (had multiple values that meant the same thing), and an entire column (Is this building dangerous or hazardous?) was completely blank for all rows. I compensated for this with a <a href="https://github.com/open-city/vacant-building-finder-import">PHP script</a> that pulls the data from the City's Data Portal and cleans up specific columns based on keywords I found that were common in meaning. For data fields that were blank, I flagged them as 'unknown'.</a>
-
-                  <p>The <a href="http://data.cityofchicago.org/Service-Requests/311-Service-Requests-Vacant-and-Abandoned-Building/7nii-7srd">311 Service Requests - Vacant and Abandoned Buildings Reported</a> dataset has been published since January 2011, and I hope the City plans on revisiting it and cleaning up the data soon.</p>
+                <h2 id="were-there-problems-with-the-data">Are there problems with the data?</h2>
+                <p>There are! This map does not represent the full list of vacant and abandoned buildings in Chicago. Because the data comes from 311 requests and Administrative Hearings, only buildings that are actively reported or in violation will show up on the map. It is likely that there are many more vacant and abandoned buildings than we show here.</a>
                   
-                  <h2 id="what-did-you-use-to-build-it">What did you use to build it?</h2>
-                  <p>This site is built with HTML, CSS, Javascript and Google's Fusion Tables and Maps API. The data is stored in Fusion Tables and is updated every week by a <a href='https://github.com/open-city/vacant-building-finder-import'>PHP script I wrote</a> to import the data directly from the <a href='http://data.cityofchicago.org/'>City of Chicago Data Portal</a>.</p>
+                <h2 id="what-did-you-use-to-build-it">What did you use to build it?</h2>
+                <p>This site is built with HTML, CSS, Javascript and Google's Fusion Tables and Maps API. The data is stored in Fusion Tables and is updated every week by a <a href='https://github.com/open-city/vacant-building-finder-import'>PHP script I wrote</a> to import the data directly from the <a href='http://data.cityofchicago.org/'>City of Chicago Data Portal</a>.</p>
+                
+                <p>Technologies used:</p>
+                <ul>
+                  <li><a href='https://carto.com'>CartoDB</a></li>
+                  <li><a href='https://leafletjs.com'>Leaflet</a></li>
+                  <li><a href='https://jquery.com/'>jQuery 3.3.1</a></li>
+                  <li><a href='https://github.com/asual/jquery-address'>jQuery Address</a></li>
+                  <li><a href='https://getbootstrap.com/'>Bootstrap 4</a></li>
+                  <li><a href='https://momentjs.com/'>Moment.js</a></li>
+                </ul> 
+                
+                <p>If you are interested, all the code for this project is open source and up on <a href='https://github.com/datamade/vacant-building-finder'>GitHub</a>.</p>
                   
-                  <p>Technologies used:</p>
-                  <ul>
-                    <li><a href='http://jquery.com'>jQuery</a></li>
-                    <li><a href='http://code.google.com/apis/maps/documentation/javascript/'>Google Maps API V3</a></li> 
-                    <li><a href='http://www.google.com/fusiontables'>Google Fusion Tables</a></li>
-                  </ul> 
-                  
-                  <p>If you are interested, all the code for this project is up on <a href='http://github.com'>github</a>:</p>
-                  <ul>
-                    <li><a href='https://github.com/open-city/vacant-building-finder'>vacant-building-finder</a> (this site)</li>
-                    <li><a href='https://github.com/open-city/vacant-building-finder-import'>vacant-building-finder-import</a></li>         </ul>
-                    
-                    <h2 id="credits">Credits</h2>
-                    <p>This site was built, designed and hosted entirely by Derek Eder in his own free time for no money. Special thanks to Cristina Sladana from <a href='http://www.fritchey.com/'>Cook County Commissioner Fritchey's Office</a>, Danielle DuMerer from Chicago's <a href='http://www.cityofchicago.org/city/en/depts/doit.html'>Department of Innovation and Technology</a>, Bill McCaffrey from Chicago's <a href="http://www.cityofchicago.org/city/en/depts/bldgs.html">Department of Buildings</a> and Chet Jackson from the <a href='http://www.whpdevelopmentcouncil.net/'>West Humboldt Park Development Council</a> for answering all my annoying questions.</p> 
-                    <p>Also a big thanks to my wife <a href='http://ayaoconnor.com'>Aya</a> for designing the logo, proofing and giving design feedback and <a href='http://c82.net'>Nick Rougeux</a> for all his continuous sage style (CSS) advice.</p>
-                    
-                    <h2 id="press">Press</h2>
-                    <p>Since launching in late September 2011, some great articles have been written about this site:</p>
-                    
-                    <ul>
-                      <li><a href="http://www.webitects.com/blog/post/mapping-chicagos-vacant-buildings">Mapping Chicago's Vacant Buildings</a> on the Webitects Blog by Derek Eder</li>
-                      <li><a href="http://gov20.govfresh.com/chicagobuildings-org-maps-vacant-and-abandoned-buildings-using-open-government-data/">Chicagobuildings.org maps vacant and abandoned buildings using open government data</a> on govfresh by Alex Howard</li>
-                    </ul>
-                    <hr />
+                <h2 id="credits">Credits</h2>
+                <p>This site was built, designed and hosted entirely by Derek Eder in his own free time for no money. Special thanks to Cristina Sladana from <a href='http://www.fritchey.com/'>Cook County Commissioner Fritchey's Office</a>, Danielle DuMerer from Chicago's <a href='http://www.cityofchicago.org/city/en/depts/doit.html'>Department of Innovation and Technology</a>, Bill McCaffrey from Chicago's <a href="http://www.cityofchicago.org/city/en/depts/bldgs.html">Department of Buildings</a> and Chet Jackson from the <a href='http://www.whpdevelopmentcouncil.net/'>West Humboldt Park Development Council</a> for answering all my annoying questions.</p> 
+                <p>Also a big thanks to my wife <a href='http://ayaoconnor.com'>Aya</a> for designing the logo, proofing and giving design feedback and <a href='http://c82.net'>Nick Rougeux</a> for all his continuous sage style (CSS) advice.</p>
+                
+                <h2 id="press">Press</h2>
+                <p>Since launching in late September 2011, some great articles have been written about this site:</p>
+                
+                <ul>
+                  <li><a href="http://gov20.govfresh.com/chicagobuildings-org-maps-vacant-and-abandoned-buildings-using-open-government-data/">Chicagobuildings.org maps vacant and abandoned buildings using open government data</a> on govfresh by Alex Howard</li>
+                </ul>
 
               </div>
             </div>

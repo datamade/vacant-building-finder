@@ -264,7 +264,7 @@ var CartoDbLib = {
         modal_content = ejs.render(template, {obj: data});
         $('#modal-pop').modal();
         $('#modal-main').html(modal_content);
-        $.address.parameter('modal_id', data.id);
+        $.address.parameter('modal_id', data.cartodb_id);
       });
   },
 
