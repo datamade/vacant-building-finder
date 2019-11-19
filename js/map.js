@@ -28,6 +28,7 @@ $(function() {
     googleApiKey: 'AIzaSyBhlf7Ayk_8nYYW5siUMTXXwvI-A6va_m0',
     recordName: 'vacant/abandoned building',
     recordNamePlural: 'vacant/abandoned buildings',
+    radius: 1610,
      });
 
   var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search-address'));

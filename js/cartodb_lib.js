@@ -35,10 +35,17 @@ var CartoDbLib = {
     CartoDbLib.googleApiKey = options.googleApiKey || "",
     CartoDbLib.recordName = options.recordName || "result",
     CartoDbLib.recordNamePlural = options.recordNamePlural || "results",
+    CartoDbLib.radius = options.radius || 805,    
 
     //reset filters
     $("#search-address").val(CartoDbLib.convertToPlainString($.address.parameter('address')));
-    $("#search-radius").val(CartoDbLib.convertToPlainString($.address.parameter('radius')));
+
+    var loadRadius = CartoDbLib.convertToPlainString($.address.parameter('radius'));
+    if (loadRadius != "") 
+        $("#search-radius").val(loadRadius);
+    else 
+        $("#search-radius").val(CartoDbLib.radius);
+
     $(":checkbox").prop("checked", "checked");
 
     var num = $.address.parameter('modal_id');
