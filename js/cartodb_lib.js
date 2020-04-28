@@ -262,6 +262,7 @@ var CartoDbLib = {
     var modal_content;
     $.get( "/templates/popup.ejs?8", function( template ) {
         modal_content = ejs.render(template, {obj: data});
+        console.log(data)
         $('#modal-pop').modal();
         $('#modal-main').html(modal_content);
         $.address.parameter('modal_id', data.cartodb_id);
